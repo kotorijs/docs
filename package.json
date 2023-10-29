@@ -1,65 +1,14 @@
 {
-    "name": "@kotori-bot/root",
-    "version": "0.9.9",
-    "description": "ChatBot Framework Base For Go-cqhttp And Node",
+    "name": "kotori-bot-docs",
+    "version": "1.0.0",
+    "description": "KotoriBot's docs webpage",
+    "author": "Hotaru",
+    "license": "MIT",
     "scripts": {
-        "start": "cd ./packages/loader && pnpm build",
-        "dev": "cd ./packages/loader && pnpm dev",
-        "test": "echo testing",
-        "build": "tsc",
-        "lint": "eslint \"packages/**/*.{js,vue,ts,jsx,tsx}\" --fix",
-        "prettier": "prettier --config .prettierrc \"packages/**/*.{vue,js,ts,json,jsx,tsx}\" --write",
-        "prepare": "husky install",
-        "release": "standard-version"
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
     },
-    "license": "GPL-3.0",
-    "author": "Hotaru <biyuehuya@gmail.com>",
-    "keywords": [
-        "ChatBot",
-        "Bot",
-        "bot",
-        "QQ",
-        "QQBot",
-        "typescript",
-        "TypeScript",
-        "NodeJs",
-        "Node",
-        "AOP"
-    ],
-    "bugs": {
-        "url": "https://github.com/biyuehu/kotori-bot/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:BIYUEHU/kotori-bot.git"
-    },
-    "homepage": "https://github.com/biyuehu/kotori-bot#readme",
     "devDependencies": {
-        "@commitlint/cli": "12.1.4",
-        "@commitlint/config-conventional": "^17.7.0",
-        "@typescript-eslint/eslint-plugin": "^6.4.0",
-        "@typescript-eslint/parser": "^6.4.0",
-        "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.47.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-import-resolver-alias": "^1.1.2",
-        "eslint-plugin-import": "^2.28.0",
-        "eslint-plugin-prettier": "^5.0.0",
-        "husky": "^8.0.3",
-        "lint-staged": "^14.0.0",
-        "prettier": "^3.0.2",
-        "standard-version": "^9.5.0",
-        "ts-loader": "^9.4.3",
-        "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.1.3"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "dependencies": {
-        "@types/node": "^20.8.7"
+        "vuepress": "^1.9.10"
     }
 }
