@@ -4,7 +4,7 @@ heroImage: /kotori.png
 heroText: 小鳥 · KotoriBot
 tagline: 基于 NodeJS + TypeScript 的聊天机器人框架
 actionText: 开始使用👉
-actionLink: /zh/guide/
+actionLink: /guide/
 features:
     - title: 跨平台
       details: 得益于模块化支持，通过编写各种模块实现不同的功能与聊天平台接入

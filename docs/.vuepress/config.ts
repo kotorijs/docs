@@ -4,21 +4,60 @@ export default defineConfig({
 	title: 'Kotori Doc',
 	description: 'ChatBot Framework Base For TypeScript And NodeJS',
 	themeConfig: {
-		// logo: '/kotori.png',
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: 'Guide', link: '/guide/' },
+			{
+				text: 'Guide',
+				link: '/guide/',
+				items: [
+					{
+						text: '简介',
+						link: '/guide/',
+					},
+					{
+						text: '快速开始',
+						link: '/guide/start',
+					},
+					{
+						text: 'BOT使用',
+						link: '/guide/usage',
+					},
+				],
+			},
 			{ text: 'Modules', link: '/modules/' },
 			{ text: 'Develop', link: '/develop/' },
 			{ text: 'Api', link: '/api/' },
 		],
+		sidebar: {
+			'/guide/': [
+				{
+					title: '指南',
+					// collapsable: false, // 可选的, 默认值是 true,
+					// sidebarDepth: 1, // 可选的, 默认值是 1
+					children: [
+						{
+							title: '介绍',
+							path: '/guide/',
+						},
+						{
+							title: '快速开始',
+							path: '/guide/start',
+						},
+						{
+							title: 'BOT使用',
+							path: '/guide/usage',
+						},
+					],
+				},
+			],
+		},
 		lastUpdated: 'Last Updated',
 		repo: 'biyuehu/kotori-bot',
 		repoLabel: 'Github',
 		docsDir: 'docs',
 		docsBranch: 'docs',
 		editLinks: true,
-		editLinkText: '帮助我们改善此页面！',
+		editLinkText: 'Edit page',
 	},
 	markdown: {
 		lineNumbers: true,

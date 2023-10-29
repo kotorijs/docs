@@ -1,1 +1,1 @@
-./docs/README.md
+./docs/zh/guide/README.md
