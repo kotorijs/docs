@@ -44,6 +44,10 @@ export default defineConfig({
 							path: '/guide/start',
 						},
 						{
+							title: '模块安装',
+							path: '/guide/modules',
+						},
+						{
 							title: 'BOT使用',
 							path: '/guide/usage',
 						},
