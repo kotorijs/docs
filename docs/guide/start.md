@@ -15,9 +15,9 @@ npm -v
 
 ### **使用 Git**
 
-    ```bash
-    git clone https://github.com/BIYUEHU/kotori-bot.git
-    ```
+```bash
+git clone https://github.com/BIYUEHU/kotori-bot.git
+```
 
 ### **手动下载**
 转到 Release 页面，选择最新的 tag 下载。
