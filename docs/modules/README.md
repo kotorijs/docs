@@ -8,7 +8,7 @@ go-cqhttp官网:[https://docs.go-cqhttp.org/](https://docs.go-cqhttp.org/)
 
 ## 环境搭建
 
-前往`[NodeJS官网](https://nodejs.org)`下载并安装Node
+前往s`[NodeJS官网](https://nodejs.org)`下载并安装Node
 
 ## 下载安装
 
