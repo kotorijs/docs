@@ -1,14 +1,14 @@
 {
-    "name": "@kotori-bot/docs",
-    "version": "1.0.0",
-    "description": "KotoriBot's docs webpage",
-    "author": "Hotaru",
-    "license": "MIT",
-    "scripts": {
-        "dev": "vuepress dev docs",
-        "build": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs"
-    },
-    "devDependencies": {
-        "vuepress": "^1.9.10"
-    }
+  "name": "@kotori-bot/docs",
+  "version": "1.0.0",
+  "description": "Kotori docs webpage",
+  "author": "Hotaru",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.9.10"
+  }
 }
