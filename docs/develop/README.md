@@ -6,7 +6,7 @@
 
 1.新建文件夹`plugins/nemusic/`
 
-2.标识文件 ：`@/manifest.json`，~~该文件在一定程度上参考了某个游戏~~
+2.标识文件：`@/manifest.json`，~~该文件在一定程度上参考了某个游戏~~
 
 ```json
 {
