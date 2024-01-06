@@ -44,21 +44,24 @@ pnpm install
 
 ```yaml
 global:
-  command-prefix: '/'
-  command-alias: ['<at target=${selfId} /> ']
-  lang: 'zh_CN'
-  dirs: [
-   './node_modules/',
-   './node_modules/@kotori-bot/'
-]
+  lang: zh_CN
+  command-prefix: /
+  dirs:
+    - ./node_modules/
+    - ./node_modules/@kotori-bot/
 
 adapter:
   cmd-test:
-      extend: 'cmd'
-      master: 0720
+    extends: cmd
+    master: 2333
+    nickname: Kotarou
+    age: 18
+    sex: male
+    self-id: 720
 
 plugin:
-
+  console:
+    test: 1
 ```
 
 > 关于 Kotori.yml 的详细介绍请参考 **[配置详解](./config.yml)**
