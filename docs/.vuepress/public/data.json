@@ -1,0 +1,14 @@
+[
+  {
+    "name": "@kotori-bot/kotori-plugin-adapter-onebot",
+    "description": "基于 Onebot 标准的 go-cqhttp 项目的适配器"
+  },
+  {
+    "name": "@kotori-bot/kotori-plugin-adapter-qq",
+    "description": "基于 Tencent 官方 API 的适配器"
+  },
+  {
+    "name": "@kotori-bot/kotori-plugin-menu",
+    "description": "菜单插件"
+  }
+]

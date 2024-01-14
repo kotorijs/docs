@@ -1,7 +1,8 @@
 # 快速开始
 
 ## 安装 Node.js
-Node.js官网： [https://nodejs.org](https://nodejs.org)
+
+Node.js 官网： [https://nodejs.org](https://nodejs.org)
 根据系统版本选择对应的安装方式即可，请确保 Node.js 版本>=**18.0**。
 
 安装完毕后输入以下命令，如若没有报错则表示安装成功。
@@ -20,6 +21,7 @@ git clone https://github.com/BIYUEHU/kotori-bot.git
 ```
 
 ### **手动下载**
+
 转到 Release 页面，选择最新的 tag 下载。
 
 下载完成后解压即可。
@@ -40,6 +42,7 @@ pnpm install
 ```
 
 ## 配置 kotori.yml
+
 使用文本编辑器打开位于 Kotori 根目录的 `kotori.yml` 文件，当前你还无需对该文件配置进行必要的改动。
 
 ```yaml
@@ -64,17 +67,17 @@ plugin:
     test: 1
 ```
 
-> 关于 Kotori.yml 的详细介绍请参考 **[配置详解](./config.yml)**
+> 关于 kotori.yml 的详细介绍请参考 [配置详解](./config.yml)
 
 ## 运行 Kotori
 
--   生产环境运行
+- 生产环境运行
 
 ```bash
 pnpm start
 ```
 
--   开发环境运行
+- 开发环境运行
 
 ```bash
 pnpm dev
