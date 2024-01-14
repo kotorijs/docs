@@ -1,115 +1,170 @@
-# 搭建指南
+# 配置详解
 
-## 关于go-cqhttp
+先前已对 `kotori.yml` 有了大概的认识，现在本篇将更为全面的介绍它。
+`kotori.yml` 是一个 Kotori 程序的核心配置文件，它一般位于 Kotori 的根目录且与 `package.json` 文件同级，使用 **YAML** 格式。
 
-go-cqhttp官网:[https://docs.go-cqhttp.org/](https://docs.go-cqhttp.org/)
+> 关于 YAML 格式的语法与规范请参考 [YAML 入门教程](https://www.runoob.com/w3cnote/yaml-intro.html)
 
-> 请自行搭建[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)及其[签名服务器](https://github.com/fuqiuluo/unidbg-fetch-qsign)，并配置好相关参数
+以下是一个将先前的配置片段集中在一起的例子（仅作参考请勿直接复制）：
 
-## 环境搭建
-
-前往`[NodeJS官网](https://nodejs.org)`下载并安装Node
-
-## 下载安装
-
--   **包管理器**
-选择你喜欢的包管理器进行安装
-    ```bash
-    npm install kotori-bot
-    pnpm install kotori-bot
-    yarn add kotori-bot
-    ```
-
--   **Git克隆**
-
-    ```bash
-    git clone https://github.com/BIYUEHU/kotori-bot.git
-    ```
-
--   **手动下载**
-转到*Release*页面,选择最新的tags下载
-
-下载完成后，在根目录运行以安装所有依赖库
-
-```bash
-npm install
-```
-
-### 配置
 ```yaml
-connect:
-    # 连接模式 可选: http ws ws-reverse 推荐首选ws-reverse
-    mode: ws-reverse
-    # Go-cqhttp里设置的访问密钥 未设置则忽略(暂未支持)
-    access-token: ''
+global:
+  lang: zh_CN
+  command-prefix: /
+  dirs:
+    - ./node_modules/
+    - ./node_modules/@kotori-bot/
+    # 上面为默认配置的加载目录
+    - ./node_modules/@custom-scope/
+    - ./test_modules
 
-    # Http正反向(暂未支持)
-    http:
-        url: 'http://localhost' # 正向Http地址
-        port: 8888 # 正向Http端口
-        reverse-port: 8080 # 反向Http端口
-        retry-time: 10 # 连接断开或失败时尝试重连间隔时间 单位:秒
+adapter:
+  cmd-test:
+    extends: cmd
+    master: 2333
+    nickname: Kotarou
+    age: 18
+    sex: male
+    self-id: 720
 
-    # WebSocket正向
-    ws:
-        url: 'ws://localhost' # WS地址
-        port: 8888 # WS端口
-        retry-time: 10 # 同上
+  kisaki:
+    extends: qq
+    appid: "xxxx"
+    secret: "xxxxx"
+    master: 2333
+    retry: 10
 
-    # WebSocket反向(相对于Gocqhttp)
-    ws-reverse:
-        port: 8080 # WS反向端口
+plugin:
+  console:
+	filter: {}
+    test: 1
 
-control:
-    program: './go-cqhttp/go-cqhttp.exe'
-    params: [] # '-update-protocol'
-    signserver: './signserver/start.bat'
-
-# 暂未实现
-bot:
-    # 机器人主人QQ号(拥有调试权限)
-    master: 123
-    # 私聊事件过滤设置(权重最高的开启/关闭好友)
-    users:
-        type: 0 # 0不过滤 1黑名单 2白名单
-        list: [] # 过滤的QQ
-    # 同上 过滤群
-    groups:
-        type: 0
-        list: []
-```
-### 运行模式
-
--   生产环境运行
-
-```bash
-npm run start
+  menu:
+    alias: cd
+    keywords: [ 菜单, 功能, 帮助]
+    content: 菜单 | 小鳥%break%/menu - 查看BOT菜单%break%/hitokoto - 获取一条一言%break%ByHotaru
 ```
 
--   开发环境运行
+## global
 
-```bash
-npm run serve
+定义全局相关的配置。
+
+- 值：**GlobalConfig**
+- 默认值：参考下面
+
+```typescript
+interface GlobalConfig {
+  lang?: LocaleType;
+  'command-prefix'?: string;
+  dirs?: string[];
+  filter?: {};
+}
 ```
 
--   开发环境运行(nodemon)
+### lang
 
-```bash
-npm run dev
+定义全局使用的语言，目前 Kotori 有且仅支持 英语、日语、台湾语、中文 四门语言。
+
+- 值：`LocaleType`，
+- 默认值：`'en_US'`
+
+```typescript
+type LocaleType = 'en_US' | 'ja_JP' | 'zh_TW' | 'zh_CN';
 ```
 
-### 启动
-#### Windows
-双击运行`start.bat`即可
+### command-prefix
 
-#### Linux
-1.cd进kotori目录
-2.输入`./start`
+定义全局使用的命令前缀。
 
-### 插件下载与安装
+- 值：**string**
+- 默认值： `'/'`
 
-> [插件中心](./PLUGINS.md)
+### dirs
 
-将插件根文件夹或单文件放置在`plugins/`目录下，Kotori会自动加载该目录下的所有相关文件
+定义需要加载的模块目录。
 
-收集插件将不定期更新，你可以直接通过**Pull Request**的方式将你的插件加入(或更新时)到仓库并更新`docs/PLUGINS.md`中的插件列表信息
+- 值：**string[]**
+- 默认值：`['./node_modules/', './node_modules/@kotori-bot/']`
+
+### filter
+
+定义全局使用的过滤器，目前过滤器功能正在实现中，该项暂时无实际效果。
+
+- 值：{}
+- 默认值：{}
+
+## adapter
+
+定义 Bot。
+
+- 值：`{ [botName: string]: AdapterConfig }`
+- 默认值：`{}`
+- botName：Bot 的唯一标识符，可自定义，建议仅使用小写英语字母、数字、间隔符字符
+
+```typescript
+interface AdapterConfig {
+	extends: string;
+	master?: number;
+	lang?: langType;
+	'command-prefix'?: string;
+	[propName: string]?: unknown;
+}
+```
+
+### extends
+
+定义该 Bot 使用的适配器。
+
+- 值：**string**
+- 可选：否
+
+### master
+
+定义该 Bot 的主人 ID（即该用户在平台的 ID）。
+
+- 值：**string** | **number**
+- 可选：是
+
+### lang
+
+定义该 Bot 使用的语言。
+
+- 值：`LocaleType`，
+- 默认值：继承于 `global.lang`
+
+### command-prefix
+
+定义该 Bot 使用的命令前缀。
+
+- 值：**string**
+- 默认值： 继承与 `global['command-prefix']`
+
+### [propName]
+
+除去以上由 Kotori 内部定义的配置项，`extends` 中指定的适配器一般情况下也会定义一些配置项用于 Bot 内部，当然这些配置项也可能不存在或为可选，具体请参考该模块的详情页。
+
+## plugin
+
+定义插件的配置项。
+
+- 值：`{ [pluginName: string]: PluginConfig }`
+- 默认值：`{}`
+- pluginName：模块的 id，去掉该模块包名中的命名空间与模块前缀（Kotori-plugin-）部分
+
+```typescript
+interface PluginConfig {
+	filter?: {};
+	[propName: string]?: unknown;
+}
+```
+
+### filter
+
+定义该插件使用的过滤器。
+
+- 值：{}
+- 默认值：{}
+
+### [propName]
+
+类似于 AdapterConfig 中的 `[propName]`，该插件也可能会定义一些配置项用于插件内部，具体请参考该模块的详情页。
