@@ -9,6 +9,8 @@
     "build": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs"
   },
   "devDependencies": {
+    "@vuepress/client": "2.0.0-rc.0",
+    "vue": "^3.4.15",
     "vuepress": "^2.0.0-rc.0",
     "vuepress-theme-reco": "^2.0.0-rc.5"
   }
