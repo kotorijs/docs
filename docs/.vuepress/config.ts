@@ -1,73 +1,18 @@
-import { defineConfig } from 'vuepress/config';
+import { defineUserConfig, defaultTheme } from 'vuepress';
+import sidebar from './sidebar';
+import navbar from './navbar';
+import { recoTheme } from 'vuepress-theme-reco'
 
-export default defineConfig({
+export default defineUserConfig({
   title: 'Kotori Doc',
   description: 'ChatBot Framework Base For TypeScript And NodeJS',
-  themeConfig: {
-    nav: [
-      { text: 'Home', link: '/' },
-      {
-        text: 'Guide',
-        link: '/guide/',
-        items: [
-          {
-            text: '简介',
-            link: '/guide/',
-          },
-          {
-            text: '快速开始',
-            link: '/guide/start',
-          },
-          {
-            text: '立即使用',
-            link: '/guide/usage',
-          },
-        ],
-      },
-      { text: 'Modules', link: '/modules/' },
-      { text: 'Develop', link: '/develop/' },
-      { text: 'Api', link: '/api/' },
-    ],
-    sidebar: {
-      '/guide/': [
-        {
-          title: '指南',
-          // collapsable: false, // 可选的, 默认值是 true,
-          // sidebarDepth: 1, // 可选的, 默认值是 1
-          children: [
-            {
-              title: '简介',
-              path: '/guide/',
-            },
-            {
-              title: '快速开始',
-              path: '/guide/start',
-            },
-            {
-              title: '模块安装',
-              path: '/guide/modules',
-            },
-            {
-              title: '配置详解',
-              path: '/guide/config'
-            },
-            {
-              title: '立即使用',
-              path: '/guide/usage',
-            },
-          ],
-        },
-      ],
-    },
-    lastUpdated: 'Last Updated',
+  theme: defaultTheme({
+    logo: '/kotori.png',
+    navbar: navbar,
+    sidebar: sidebar,
     repo: 'kotorijs/kotori',
     repoLabel: 'Github',
     docsDir: 'docs',
     docsBranch: 'docs',
-    editLinks: true,
-    editLinkText: 'Edit page',
-  },
-  markdown: {
-    lineNumbers: true,
-  },
+  }),
 });

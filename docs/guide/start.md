@@ -3,7 +3,7 @@
 ## 安装 Node.js
 
 Node.js 官网： [https://nodejs.org](https://nodejs.org)
-根据系统版本选择对应的安装方式即可，请确保 Node.js 版本>=**18.0**。
+根据系统版本选择对应的安装方式即可，请确保 Node.js 版本>=**17.0**。
 
 安装完毕后输入以下命令，如若没有报错则表示安装成功。
 
@@ -17,24 +17,22 @@ npm -v
 ### **使用 Git**
 
 ```bash
-git clone https://github.com/BIYUEHU/kotori-bot.git
+git clone https://github.com/kotori/kotori.git
 ```
 
 ### **手动下载**
 
-转到 Release 页面，选择最新的 tag 下载。
-
-下载完成后解压即可。
+转到 Release 页面，选择最新的 tag 下载。下载完成后解压即可。
 
 ## 使用 pnpm 安装依赖
 
-由于 Kotori 项目基于 pnpm 的 **monorepo** 进行开发，因此需要先安装 pnpm。
+Kotori 基于 pnpm 的 Monorepo 进行开发，因此需要先安装 pnpm。
 
 ```bash
 npm install pnpm -g
 ```
 
-进入到 Kotori 的根目录并使用 pnpm 安装相关依赖
+进入到 Kotori 的根目录并使用 pnpm 安装相关依赖：
 
 ```bash
 cd ./kotori-bot-master
@@ -67,17 +65,17 @@ plugin:
     test: 1
 ```
 
-> 关于 kotori.yml 的详细介绍请参考 [配置详解](./config.yml)
+> 关于 kotori.yml 的详细介绍请参考 [配置详解](./config.md)
 
 ## 运行 Kotori
 
-- 生产环境运行
+- 生产环境运行：
 
 ```bash
 pnpm start
 ```
 
-- 开发环境运行
+- 开发环境运行：
 
 ```bash
 pnpm dev

@@ -21,3 +21,5 @@ modules3
 
 .obsidian
 yarn.lock
+.cache
+.temp

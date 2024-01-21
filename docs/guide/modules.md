@@ -18,9 +18,9 @@
 
 ## 下载与安装
 
-此处以「QQ 适配器服务模块」（[@kotori-bot/kotori-plugin-adapter-qq](./modules/#@kotori-bot/kotori-plugin-adapter-qq)）为例。
+此处以「QQ 适配器服务模块」（[@kotori-bot/kotori-plugin-adapter-qq](../modules/README.md#@kotori-bot/kotori-plugin-adapter-qq)）为例。
 
-> 模块的包名除去 `@xxx/` 的部分（如果有），会有一段相似的开始字段，将其称之为**模块前缀**。通过模块前缀可判断模块类型，如「kotori-plugin-adapter-xxx」表示**适配器服务**，「kotori-plugin-database-xxx」表示**数据库服务**，「kotori-plugin-xxx」表示**插件**或**自定义服务**，详细内容请参考 [开发文档](./develop/)。
+> 模块的包名除去 `@xxx/` 的部分（如果有），会有一段相似的开始字段，将其称之为「**模块前缀**」。通过模块前缀可判断模块类型，如「kotori-plugin-adapter-xxx」表示**适配器服务**，「kotori-plugin-database-xxx」表示**数据库服务**，「kotori-plugin-xxx」表示**插件**或**自定义服务**，详细内容请参考 [开发文档](../develop/)。
 
 ### 使用包管理工具
 
@@ -37,7 +37,7 @@ pnpm install @kotori-bot/kotori-plugin-adapter-qq
 在模块详情页里打开 **Github** 仓库地址或 **npm** 发布包地址，下载模块的源码或构建产物。
 解压压缩包并移动至 Kotori 根目录下的 `./modules/` 内。
 
-> 如若下载的是模块的源码应将其手动编译成构建产物后再安装，或在 `dev` 模式下运行 Kotori 程序，详细内容请参考 [开发文档](./develop/)。
+> 如若下载的是模块的源码应将其手动编译成构建产物后再安装，或在 `dev` 模式下运行 Kotori 程序，详细内容请参考 [开发文档](../develop/)。
 
 > 务必确保解压后的模块文件夹仅有一层文件夹而非多层，否则将导致模块无法被识别与加载。
 
@@ -74,7 +74,7 @@ global:
 
 ### 插件
 
-插件配置数据应写在 `kotori.yml` 的 `plugin.<plugin-name>` 项下，其中 `<plugin-name>` 为插件名字，且不应含有包的命名空间与模块前缀，值应是一个对象。插件的配置项由插件本身提供与指定，并非所有插件本身都会提供配置项。一般情况下，有提供配置项的插件内都会有一套默认配置，因此不配置也可以正常运行插件，若有手动配置项则会覆盖对应的默认配置项。插件的配置与其说明可参考该插件的详情页，此处以 「菜单插件」（[@kotori-bot/kotori-plugin-menu](./modules/#@kotori-bot/kotori-plugin-menu)）为例，在详情页查看配置说明后在 `kotori.yml` 中配置相关内容：
+插件配置数据应写在 `kotori.yml` 的 `plugin.<plugin-name>` 项下，其中 `<plugin-name>` 为插件名字，且不应含有包的命名空间与模块前缀，值应是一个对象。插件的配置项由插件本身提供与指定，并非所有插件本身都会提供配置项。一般情况下，有提供配置项的插件内都会有一套默认配置，因此不配置也可以正常运行插件，若有手动配置项则会覆盖对应的默认配置项。插件的配置与其说明可参考该插件的详情页，此处以 「菜单插件」（[@kotori-bot/kotori-plugin-menu](../modules/README.md#@kotori-bot/kotori-plugin-menu)）为例，在详情页查看配置说明后在 `kotori.yml` 中配置相关内容：
 
 ```yaml
 # ...
@@ -110,7 +110,7 @@ adapter:
     self-id: 720
 ```
 
-> cmd 适配器即「@kotori-bot/kotori-plugin-adapter-cmd」，属于 kotori 预装模块之一，用于为 kotori 程序当前所运行在的控制台提供聊天交互功能，也是最方便的测试机器人的场所（但并不推荐，因为只支持文字交互，模块开发有更好的测试场所选择，详细内容请参考 [开发文档]()）。
+> cmd 适配器即「[@kotori-bot/kotori-plugin-adapter-cmd](../modules/README.md#@kotori-bot/kotori-plugin-adapter-cmd)」，属于 kotori 预装模块之一，用于为 kotori 程序当前所运行在的控制台提供聊天交互功能，也是最方便的测试机器人的场所（但并不推荐，因为只支持文字交互，模块开发有更好的测试场所选择，详细内容请参考 [开发文档](../develop)）。
 
 不过此处使用的 cmd 适配器定义的配置项均有默认值因此为可选。接着使用「@kotori-bot/kotori-plugin-adapter-qq」适配器再创建一个 Bot：
 
@@ -132,6 +132,6 @@ adapter:
     retry: 10
 ```
 
-查看 qq 适配器的详情页面可知，`appid` 、 `secret` 为其定义的必要配置项，`retry` 为其定义的可选配置项，关于 qq 适配器的具体使用与配置项含义请查看其插件详情页。
+查看 QQ 适配器的详情页面可知，`appid` 、 `secret` 为其定义的必要配置项，`retry` 为其定义的可选配置项，关于 qq 适配器的具体使用与配置项含义请查看其插件详情页。
 
-> 关于 Kotori.yml 的详细介绍请参考 [配置详解](./config.yml)
+> 关于 Kotori.yml 的详细介绍请参考 [配置详解](./config.md)
