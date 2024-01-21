@@ -1,7 +1,7 @@
 export default [
   { text: 'Home', link: '/' },
-  { text: 'Guide', link: '/guide/introduce.html' },
+  { text: 'Guide', link: '/guide/introduce' },
   { text: 'Modules', link: '/modules/' },
-  { text: 'Develop', link: '/develop/nav.html' },
+  { text: 'Develop', link: '/develop/nav' },
   { text: 'Api', link: '/api/' },
-]
+];
