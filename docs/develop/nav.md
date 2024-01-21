@@ -1,5 +1,6 @@
 # 总览
 
+<!--
 - 快速入门
   - [环境搭建](./start/environment.md)
   - [项目构建](/start/setup.md)
@@ -29,6 +30,7 @@
   - [国际化（i18n）](./extend/i18n.md)
   - [日志打印（Logger）](./extend/logger.md)
   - [工具函数（Tools）](./extend/tools.md)
+ -->
 
 ::: tip
 阅读本章前请确保你已阅读完毕 [使用指南](../guide/README.md)。

@@ -1,13 +1,12 @@
 import { defineUserConfig, defaultTheme } from 'vuepress';
-import sidebar from './sidebar';
-import navbar from './navbar';
-import { recoTheme } from 'vuepress-theme-reco'
+import sidebar from './config/sidebar';
+import navbar from './config/navbar';
 
 export default defineUserConfig({
   title: 'Kotori Doc',
-  description: 'ChatBot Framework Base For TypeScript And NodeJS',
+  description: 'ChatBot Framework Base For NodeJS And TypeScript',
   theme: defaultTheme({
-    logo: '/kotori.png',
+    logo: '/assets/kotori.png',
     navbar: navbar,
     sidebar: sidebar,
     repo: 'kotorijs/kotori',
