@@ -28,7 +28,7 @@ jobs:
           cache: pnpm
 
       - name: Build VuePress site
-        run: pnpm docs
+        run: pnpm build
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
