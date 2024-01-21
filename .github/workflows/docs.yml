@@ -38,5 +38,6 @@ jobs:
         with:
           target_branch: main
           build_dir: docs/.vuepress/dist
+          fqdn: https://kotori.js.org
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
