@@ -16,8 +16,9 @@ export default defineUserConfig({
   title: 'Kotori Doc',
   description: 'ChatBot Framework Base For NodeJS And TypeScript',
   theme: defaultTheme({
+    docsRepo: 'https://gitlab.com/kotorijs/docs',
+    docsBranch: 'master',
     logo: '/assets/kotori.png',
-    repo: 'kotorijs/docs',
     navbar: navbar,
     sidebar: sidebar,
     editLinkText: '在 GitHub 上编辑此页',
