@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:
@@ -36,6 +39,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
+          repo: kotorijs/kotori
           target_branch: main
           build_dir: docs/.vuepress/dist
           fqdn: https://kotori.js.org
