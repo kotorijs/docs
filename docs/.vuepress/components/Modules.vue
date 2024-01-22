@@ -43,36 +43,32 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      isloading: true,
-      target: '',
-      res: null,
-      res2: null,
-    };
-  },
-  async mounted() {
-    this.target = location.href.split('#')[1];
-    const data = await (await fetch('/data.json')).json();
-    if (!this.target) {
-      this.res = data;
-      this.isloading = false;
-      return;
-    }
-    const handle = data.filter(element => element.name === this.target);
-    if (handle.length > 0) {
-      this.res = handle[0];
+<script setup lang="ts">
+import {ref} from  'vue';
+const isloading = ref(true);
+const target = location.href.split('#').length > 2 ? location.href.split('#')[1] : '';
+
+const res = ref(null) as any;
+const res2 = ref(null) as any;
+
+const data = await (await fetch('/data.json')).json();
+
+if (target) {
+  const handle = data.filter(element => element.name === target);
+  if (handle.length > 0) {
+      res.value = handle[0];
       try {
-        const handle2 = await (await fetch(`https://registry.npmjs.org/${this.target}`)).json();
-        if (handle2.name) this.res2 = handle2;
+        const handle2 = await (await fetch(`https://registry.npmjs.org/${target}`)).json();
+        if (handle2.name) res2.value = handle2;
       } catch (e) {
         console.log(e);
       }
     }
-    this.isloading = false;
-    console.log(this.res);
-  },
-};
+    isloading.value = false;
+} else {
+  res.value = data;
+      isloading.value = false;
+
+}
+
 </script>
