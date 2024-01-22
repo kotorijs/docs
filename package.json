@@ -7,16 +7,23 @@
   "license": "MIT",
   "scripts": {
     "build": "vuepress-cli build docs --clean-cache --clean-temp",
-    "dev": "vuepress-cli dev docs --clean-cache --clean-temp"
+    "dev": "vuepress-cli dev docs --clean-cache --clean-temp",
+    "format": "prettier --write .",
+    "lint": "eslint --ext .ts,.vue --fix"
   },
-  "prettier": "prettier-config-vuepress",
-  "dependencies": {
+  "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.0",
     "@vuepress/cli": "2.0.0-rc.0",
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/core": "2.0.0-rc.0",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.0",
+    "@vuepress/plugin-register-components": "2.0.0-rc.0",
+    "@vuepress/plugin-search": "2.0.0-rc.0",
+    "@vuepress/plugin-shiki": "2.0.0-rc.0",
     "@vuepress/theme-default": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
     "vue": "^3.3.13"
   }
 }
