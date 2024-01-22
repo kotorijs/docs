@@ -9,9 +9,9 @@ export default defineUserConfig({
     logo: '/assets/kotori.png',
     navbar: navbar,
     sidebar: sidebar,
-    repo: 'kotorijs/kotori',
+    repo: 'kotorijs/docs',
     repoLabel: 'Github',
     docsDir: 'docs',
-    docsBranch: 'docs',
+    docsBranch: 'master',
   }),
 });
