@@ -8,15 +8,16 @@ export default {
   '/develop/': [
     {
       text: '开发指南',
-      link: '/develop/',
       children: [
         '/develop/nav',
         {
           text: '快速入门',
+          collapsible: true,
           children: ['/develop/start/environment', '/develop/start/setup', '/develop/start/publish'],
         },
         {
           text: '基础设施',
+          collapsible: true,
           children: [
             '/develop/base/events',
             '/develop/base/command',
@@ -27,6 +28,7 @@ export default {
         },
         {
           text: '模块化',
+          collapsible: true,
           children: [
             '/develop/modules/plugin',
             '/develop/modules/context',
@@ -37,6 +39,7 @@ export default {
         },
         {
           text: '适配器',
+          collapsible: true,
           children: [
             '/develop/adapter/elements',
             '/develop/adapter/api',
@@ -47,6 +50,7 @@ export default {
         },
         {
           text: '扩展功能',
+          collapsible: true,
           children: [
             '/develop/extend/filter',
             '/develop/extend/internal',
