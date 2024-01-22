@@ -87,11 +87,11 @@ type LocaleType = 'en_US' | 'ja_JP' | 'zh_TW' | 'zh_CN';
 
 ```typescript
 interface AdapterConfig {
-	extends: string;
-	master?: number;
-	lang?: langType;
-	'command-prefix'?: string;
-	[propName: string]?: unknown;
+  extends: string;
+  master?: number;
+  lang?: langType;
+  'command-prefix'?: string;
+  [propName: string]?: unknown;
 }
 ```
 
@@ -137,8 +137,8 @@ interface AdapterConfig {
 
 ```typescript
 interface PluginConfig {
-	filter?: {};
-	[propName: string]?: unknown;
+  filter?: {};
+  [propName: string]?: unknown;
 }
 ```
 

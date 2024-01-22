@@ -1,14 +1,30 @@
-<template>
-  <span>
-    <button @click="click()" style="border: none; padding: 3px; border-radius: 4px; vertical-align: bottom">
-      <img style="height: 1.5em; width: 1.5em" src="https://cn.vitejs.dev/voice.svg#voice" />
-    </button>
-  </span>
-</template>
-
 <script setup lang="ts">
+import { nextTick } from 'vue';
+
 function click() {
-  const voice = new Audio('/kotori.mp3');
+  const voice = new Audio('/assets/kotori.mp3');
   voice.play();
 }
 </script>
+
+<template>
+  <span>
+    <input
+      type="image"
+      src="https://cn.vitejs.dev/voice.svg#voice"
+      @click="click()"
+      class="voice"
+      style="
+        background-color: rgb(243, 244, 245);
+        border: none;
+        padding: 3px;
+        border-radius: 4px;
+        vertical-align: bottom;
+        height: 1.5em;
+        width: 1.5em;
+      "
+    />
+  </span>
+</template>
+
+<style></style>

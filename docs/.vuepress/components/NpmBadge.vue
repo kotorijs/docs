@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 const props = defineProps({
   package: {
@@ -9,35 +9,24 @@ const props = defineProps({
   distTag: {
     type: String,
     required: false,
-    default: 'next',
+    default: 'latest',
   },
-})
+});
 
-const badgeLink = computed(
-  () => `https://www.npmjs.com/package/${props.package}`,
-)
+const badgeLink = computed(() => `https://www.npmjs.com/package/${props.package}`);
 const badgeLabel = computed(() => {
   if (props.distTag) {
-    return `${props.package}@${props.distTag}`
+    return `${props.package}@${props.distTag}`;
   }
-  return props.package
-})
+  return props.package;
+});
 const badgeImg = computed(
-  () =>
-    `https://badgen.net/npm/v/${props.package}/${
-      props.distTag
-    }?label=${encodeURIComponent(badgeLabel.value)}`,
-)
+  () => `https://badgen.net/npm/v/${props.package}/${props.distTag}?label=${encodeURIComponent(badgeLabel.value)}`,
+);
 </script>
 
 <template>
-  <a
-    class="npm-badge"
-    :href="badgeLink"
-    :title="package"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <a class="npm-badge" :href="badgeLink" :title="package" target="_blank" rel="noopener noreferrer">
     <img :src="badgeImg" :alt="package" />
   </a>
 </template>

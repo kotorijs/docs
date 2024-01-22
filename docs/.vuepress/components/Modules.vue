@@ -1,3 +1,31 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+const isloading = ref(true);
+const target = location.href.split('#').length > 2 ? location.href.split('#')[1] : '';
+
+const res = ref(null) as any;
+const res2 = ref(null) as any;
+
+const data = await (await fetch('/data.json')).json();
+
+if (target) {
+  const handle = data.filter(element => element.name === target);
+  if (handle.length > 0) {
+    res.value = handle[0];
+    try {
+      const handle2 = await (await fetch(`https://registry.npmjs.org/${target}`)).json();
+      if (handle2.name) res2.value = handle2;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  isloading.value = false;
+} else {
+  res.value = data;
+  isloading.value = false;
+}
+</script>
+
 <template>
   <div v-if="isloading" align="center">loading...</div>
   <div v-else>
@@ -42,33 +70,3 @@
     <div v-else align="center">未找到需要的模块 {{ target }}</div>
   </div>
 </template>
-
-<script setup lang="ts">
-import {ref} from  'vue';
-const isloading = ref(true);
-const target = location.href.split('#').length > 2 ? location.href.split('#')[1] : '';
-
-const res = ref(null) as any;
-const res2 = ref(null) as any;
-
-const data = await (await fetch('/data.json')).json();
-
-if (target) {
-  const handle = data.filter(element => element.name === target);
-  if (handle.length > 0) {
-      res.value = handle[0];
-      try {
-        const handle2 = await (await fetch(`https://registry.npmjs.org/${target}`)).json();
-        if (handle2.name) res2.value = handle2;
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    isloading.value = false;
-} else {
-  res.value = data;
-      isloading.value = false;
-
-}
-
-</script>
