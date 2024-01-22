@@ -1,1 +1,1 @@
-./docs/README.md
+# Kotori Docs
