@@ -16,16 +16,5 @@
         ]
       }
     }
-  ],
-  "rules": {
-    // "@typescript-eslint/no-explicit-any": 0,
-    // "@typescript-eslint/no-namespace": 0,
-    // "no-console": 0,
-    // "space-before-function-paren": 0,
-    /* typescript need */
-    "no-use-before-define": 0,
-    "no-unused-vars": 0,
-    "no-shadow": 0,
-    "no-redeclare": 0
-  }
+  ]
 }
