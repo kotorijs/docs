@@ -36,7 +36,7 @@ adapter:
 
 plugin:
   console:
-	filter: {}
+ filter: {}
     test: 1
 
   menu:
