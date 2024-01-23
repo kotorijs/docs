@@ -6,6 +6,7 @@ import { registerComponentsPlugin } from '@vuepress/plugin-register-components';
 import { shikiPlugin } from '@vuepress/plugin-shiki';
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch';
+import { searchPlugin } from '@vuepress/plugin-search'
 import sidebar from './config/sidebar';
 import navbar from './config/navbar';
 
@@ -88,6 +89,13 @@ export default defineUserConfig({
     }), */
     googleAnalyticsPlugin({
         id: 'G-NES42R3BKE',
+      }),
+      searchPlugin({
+        locales: {
+          '/': {
+        placeholder: '搜索',
+          }
+        }
       }),
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, './components'),
