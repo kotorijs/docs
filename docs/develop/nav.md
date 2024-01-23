@@ -53,5 +53,5 @@ TypeScript 是 JavaScript 的超集，TypeScript 在继承了 JavaScript 全部�
 
 - [接口文档](../api)
   用于全面了解与查阅 Kotori 提供的所有公开 API。
-- [深入了解]()
+- [深入了解](../deep)
   Kotori 的开发历程、版本记录、运行流程、设计构思、设计参考等。

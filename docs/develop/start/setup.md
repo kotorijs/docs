@@ -25,7 +25,7 @@ create-kotori my-project
 git clone https://github.com/kotorijs/kotori.git
 ```
 
-此处默认克隆的是主分支下的代码，也可以选择克隆 dev 分支，该内容将在 [进阶开发中]() 详细说明。进入根目录并使用 pnpm 安装依赖：
+此处默认克隆的是主分支下的代码，也可以选择克隆 dev 分支，该内容将在 [进阶开发中](../deep) 详细说明。进入根目录并使用 pnpm 安装依赖：
 
 ```bash
 cd ./kotori-bot-master
@@ -42,7 +42,7 @@ cd ./my-project/
 
 ## 项目结构
 
-```
+```text
 my-plugin
 ├── kotori.yml
 ├── package.json
@@ -59,7 +59,7 @@ my-plugin
 │   ├── en_US.json
 │   ├── ja_JP.json
 │   ├── zh_CN.json
-│	└── zh_TW.json
+│ └── zh_TW.json
 └── src
     ├── config.ts
     ├── index.ts
@@ -137,46 +137,47 @@ my-plugin
 
 ```json
 {
-   "name": "kotori-plugin-my-project",
-   "version": "1.0.0",
-   "description": "This is my first Kotori plugin",
-   "main": "lib/index.js",
-   "scripts": {
-     "build": "tsc --build"
-   },
-   "license": "GPL-3.0",
-   "keywords": [
-     "kotori-plugin"
-   ],
-   "files": [
-     "lib",
-     "LICENSE",
-     "README.md"
-   ], ,
-   "peerDependencies": {
-     "kotori-bot": "1.1.0"
-   },
-   "author": "Himeno <biyuehuya@gmail.com>",
-   "bugs": {
-		 "url": "https://github.com/kotorijs/my-project/issues"
-   },
-   "repository": {
-     "type": "git",
-     "url": "git+https://github.com/kotorijs/my-project.git"
-   },
-   "homepage": "https://github.com/kotorijs/my-project/",
-	"kotori": {
-	  "enforce": "pre",
-	    "meta": {
-	      "languages": [
-			    "en_US",
-				  "ja_JP",
-				  "zh_TW",
-				  "zh_CN"
-       ]
-     }
-	}
- }
+    "name": "kotori-plugin-my-project",
+    "version": "1.0.0",
+    "description": "This is my first Kotori plugin",
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "tsc --build"
+    },
+    "license": "GPL-3.0",
+    "keywords": [
+        "kotori-plugin"
+    ],
+    "files": [
+        "lib",
+        "LICENSE",
+        "README.md"
+    ],
+    ,
+    "peerDependencies": {
+        "kotori-bot": "1.1.0"
+    },
+    "author": "Himeno <biyuehuya@gmail.com>",
+    "bugs": {
+        "url": "https://github.com/kotorijs/my-project/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kotorijs/my-project.git"
+    },
+    "homepage": "https://github.com/kotorijs/my-project/",
+    "kotori": {
+        "enforce": "pre",
+        "meta": {
+            "languages": [
+                "en_US",
+                "ja_JP",
+                "zh_TW",
+                "zh_CN"
+            ]
+        }
+    }
+}
 ```
 
 ## index.ts
@@ -219,10 +220,10 @@ export function main(ctx: Context) {
 
 ```yaml
 adapter:
-	developer:
-		extends: sandbox
-		master: 1
-		port: 2333
+ developer:
+  extends: sandbox
+  master: 1
+  port: 2333
 ```
 
 从开发环境下启动 Kotori：
@@ -233,4 +234,4 @@ pnpm dev
 
 在浏览器中打开 `http://localhost:2333` 即可进入沙盒环境，输入 `/echo Hello,Kotori!` 以查看效果：
 
-![](https://pic.imgdb.cn/item/65abe55e871b83018a1f2b92.png)
+![show](https://pic.imgdb.cn/item/65abe55e871b83018a1f2b92.png)

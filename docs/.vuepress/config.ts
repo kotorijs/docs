@@ -4,6 +4,7 @@ import { viteBundler } from '@vuepress/bundler-vite';
 import { defaultTheme } from '@vuepress/theme-default';
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components';
 import { shikiPlugin } from '@vuepress/plugin-shiki';
+import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 import sidebar from './config/sidebar';
 import navbar from './config/navbar';
@@ -13,7 +14,7 @@ const __dirname = getDirname(import.meta.url);
 export default defineUserConfig({
   base: '/',
   bundler: viteBundler(),
-  title: 'Kotori Doc',
+  title: 'Kotori Docs',
   description: 'ChatBot Framework Base For NodeJS And TypeScript',
   theme: defaultTheme({
     docsRepo: 'https://gitlab.com/kotorijs/docs',
@@ -85,7 +86,9 @@ export default defineUserConfig({
         },
       },
     }), */
-
+    googleAnalyticsPlugin({
+        id: 'G-NES42R3BKE',
+      }),
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, './components'),
     }),
