@@ -43,7 +43,7 @@ cd ./my-project/
 ## 项目结构
 
 ```text
-my-plugin
+my-project
 ├── kotori.yml
 ├── package.json
 ├── tsconfig.json
