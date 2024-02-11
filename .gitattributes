@@ -9,4 +9,4 @@
 *.woff binary
 *.woff2 binary
 
-docs/.vuepress/** -linguist-documentation
+.vuepress/** -linguist-documentation
