@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  # image:
-  #   src: /logo.png
-  #   alt: KotoriBot
+  image:
+    src: /favicon.svg
+    alt: KotoriBot
   name: '小鳥 · KotoriBot'
   tagline: 基于 NodeJS + TypeScript 的聊天机器人框架
   actions:
