@@ -6,7 +6,18 @@ export default defineConfig({
   srcDir: 'src',
   title: 'Kotori',
   description: 'ChatBot Framework Base For NodeJS And TypeScript',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-NES42R3BKE' }],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NES42R3BKE');`
+    ]
+  ],
   themeConfig: {
     logo: '/logo.png',
     nav: navbar,
