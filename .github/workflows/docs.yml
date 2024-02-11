@@ -33,7 +33,7 @@ jobs:
           node-version: 18
           cache: pnpm
 
-      - name: Build VuePress site
+      - name: Build VitePress site
         run: pnpm build
 
       - name: Deploy to GitHub Pages
@@ -41,7 +41,7 @@ jobs:
         with:
           repo: kotorijs/kotori
           target_branch: main
-          build_dir: .vuepress/dist
+          build_dir: .vitepress/dist
           fqdn: https://kotori.js.org
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
