@@ -7,7 +7,7 @@ export default defineConfig({
   title: 'Kotori',
   description: 'ChatBot Framework Base For NodeJS And TypeScript',
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-NES42R3BKE' }],
     [
       'script',
@@ -19,7 +19,7 @@ export default defineConfig({
     ]
   ],
   themeConfig: {
-    logo: '/logo.png',
+    logo: '/favicon.svg',
     nav: navbar,
     sidebar: sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/kotorijs/kotori' }],
