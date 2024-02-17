@@ -38,23 +38,24 @@ kotori 是一个**跨平台、解耦合、现代化**于一体的聊天机器人
 - QQ（基于 Tencent 官方 API）
 - QQ（基于 Onebot 标准的 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 项目）
 - CMD 命令行
-  即将支持：
+
+即将支持：
+
 - Telegram
 - Kook/开黑啦
 - MinecraftBedrock（基于 Websocket）
 - WeChat/微信
 - Discord
 
-#### 数据库（待支持）
+#### 数据
 
-- Memory
+- File
 - Sqlite
-- Mysql
 
 ## 你是？
 
 - 框架用户，使用 Kotori 搭建自己的机器人：[快速开始](./start)
 - 平台用户，使用官方提供的现成机器人：[立即使用](./usage)
 - 开发者
-  - 模块开发者，开发 Kotori 模块：[开发文档](../guide/nav)
-  - Node.js 开发者，将 Kotori 作为依赖开发自己的项目：[接口文档](../api/)
+  - 模块开发者，开发 Kotori 模块：[开发指南](../guide/nav)
+  - Node.js 开发者，将 Kotori 作为依赖开发自己的项目：[接口参考](../api/)
