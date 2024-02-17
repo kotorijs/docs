@@ -8,6 +8,11 @@
     "global": {
       "type": "object",
       "properties": {
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65525
+        },
         "lang": {
           "enum": [
             "en_US",
