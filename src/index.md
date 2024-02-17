@@ -21,8 +21,8 @@ features:
     details: 得益于模块化支持，通过编写各种模块实现不同的功能与聊天平台接入
   - icon: 🧩
     title: 解耦合
-    details: 对底层事件封装实现核心功能，减少代码冗余与复杂度，提升开发效率
+    details: 基于控制反转与面向切面编程思想，减少代码冗余与复杂度
   - icon: 🛠️
     title: 现代化
-    details: Kotori 使用现代化的 ECMAScript 语法规范与强大的 TypeScript 类型检查
+    details: 使用现代化的 ECMAScript 语法规范与强大的 TypeScript 类型支持
 ---
