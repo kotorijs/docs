@@ -44,6 +44,7 @@ method();
     <div v-if="res && typeof res === 'object'">
       <div v-if="Array.isArray(res)">
         <h2>Kotori | 模块中心</h2>
+        <div>收录插件总数：{{ res.length }}</div>
         <div v-for="data in res" :key="data.name">
           <a :href="`/modules/#${data.name}`" target="_blank"
             ><h2>{{ data.name }}</h2></a
