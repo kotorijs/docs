@@ -5,7 +5,7 @@ import sidebar from './config/sidebar';
 export default defineConfig({
   srcDir: 'src',
   title: 'Kotori',
-  description: 'ChatBot Framework Base For Node.js And TypeScript',
+  description: 'Cross-platform chatbot framework base on Node.js and TypeScript',
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-NES42R3BKE' }],
