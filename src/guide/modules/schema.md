@@ -1,4 +1,4 @@
-# 配置检测系统
+# 配置检测
 
 **配置检测(Schema)** 是 Kotori 中的一个重要概念和功能,其相关的所有实现均来源于 [Tsukiko](https://github.com/biyuehu/tsukiko) 库。Kotori 对 Tsukiko 进行了重新导出,因此可直接在 Kotori 中使用。
 
