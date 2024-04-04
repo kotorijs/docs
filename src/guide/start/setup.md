@@ -17,56 +17,36 @@ npm install create-kotori -g
 create-kotori my-project
 ```
 
-## 基于 Kotori 源码构建
-
-亦称为「工作区开发」，该方法适用于有一定 Node.js 开发经验的开发者，并不推荐新人使用。使用该方法可同时开发多个插件，也可在开发当前插件时安装使用其它插件，同时可以便捷的修改与调试 Kotori 源码并进行二次开发。使用 Git 直接克隆 `Kotorijs/kotori` 仓库的源码：
-
-```bash
-git clone https://github.com/kotorijs/kotori.git
-```
-
-此处默认克隆的是主分支下的代码，也可以选择克隆 dev 分支，该内容将在 [进阶开发中](../../advanced/) 详细说明。进入根目录并使用 pnpm 安装依赖：
-
-```bash
-cd ./kotori-bot-master
-pnpm install
-```
-
-在 `./modules/` 目录下使用 create-kotori 创建一个模块：
-
-```bash
-cd ./modules/
-pnpm init kotori@latest my-project
-cd ./my-project/
-```
-
 ## 项目结构
 
 ```text
 my-project
-├── kotori.yml
 ├── package.json
 ├── tsconfig.json
+├── tsconfig.node.json
+├── pnpm-workspace.json
+├── kotori.yml
 ├── LICENSE
 ├── README.md
 ├── .gitignore
-├── node_modules
-├── lib
-│   ├── index.js
-│   ├── index.d.ts
-│   ├── ...
-├── locales
-│   ├── en_US.json
-│   ├── ja_JP.json
-│   ├── zh_CN.json
-│ └── zh_TW.json
-└── src
-    ├── config.ts
-    ├── index.ts
-    ├── types.ts
+└──  scripts
+    └──  dev.ts
+└──  project
+    └──  my-project
+      ├── package.json
+      ├── LICENSE
+      ├── README.md
+      ├── tsconfig.json
+      ├── lib
+      │   ├── ...
+      ├── locales
+      │   ├── en_US.json
+      │   ├── ja_JP.json
+      │   ├── zh_CN.json
+      │   └── zh_TW.json
+      └── src
+          └── index.ts
 ```
-
-`kotori.yml` 仅在直接构建时存在于模块根目录，工作区开发下将位于工作区的根目录。
 
 - `kotori.yml` Kotori 配置文件
 - `kotori.dev.yml` Kotori Dev 模式下配置文件
@@ -78,9 +58,7 @@ my-project
 - `lib` 构建产物输出目录（前端为 `dist`，后端为 `lib`）
 - `locales` 国际化文件夹，将在后面的章节中讲解
 - `src` 工程文件夹，代码存放处
-  - `cofig.ts` 默认配置数据文件
   - `index.ts` 整个模块的入口文件
-  - `types.ts` 公共类型文件
 
 ## package.json
 
@@ -133,7 +111,7 @@ my-project
 }
 ```
 
-一个合法的 Kotori 模块其 `package.json` 需要满足一系列来自 Kotori 的约定，Kotori 程序只有在其合法时才会加载该模块。不过当前你无需关心这个问题，元数据与 `package.json` 约定将放在「模块化」章节中讲解。以下是该 package.json 的完整效果：
+一个合法的 Kotori 模块其 `package.json` 需要满足一系列来自 Kotori 的约定，Kotori 程序只有在其合法时才会加载该模块。不过当前你无需关心这个问题，元数据与 `package.json` 约定将放在第三章中讲解。以下是该 package.json 的完整效果：
 
 ```json
 {
@@ -200,14 +178,14 @@ export function main(ctx: Context) {
       return [
         `返回消息:~%message%`,
         {
-          message: data.args[0],
-        },
+          message: data.args[0]
+        }
       ];
     })
     .alias('print')
     .scope('group');
 
-  ctx.regexp(/^(.*)#print$/, match => match[1]);
+  ctx.regexp(/^(.*)#print$/, (match) => match[1]);
 
   ctx.command('ison').action((_, events) => {
     if (events.api.adapter.config.master === events.userId) return `在的哟主人~`;
@@ -222,15 +200,16 @@ export function main(ctx: Context) {
 
 ```yaml
 adapter:
- developer:
-  extends: sandbox
-  master: 1
-  port: 2333
+  developer:
+    extends: sandbox
+    master: 1
+    port: 2333
 ```
 
 ### 运行模式
 
 运行模式分为 「生产模式（Build）」与「开发模式（Dev）」两种：
+
 - Build 模式将显示更少的日志输出，有利于减少不必要信息方便用户使用；Dev 模式会有详尽的错误日志与开发日志输出，有利于开发者快速找到问题。
 - Build 模式有更牢固的错误捕获与进程守护，长期运行更加稳定；Dev 模式下在遇到某些关键性错误时会退出整个 Kotori 程序。
 - Dev 模式会有实时的代码文件变动监听与模块自动重载（热更新），为开发者提供犹如前端开发般的便捷体验。

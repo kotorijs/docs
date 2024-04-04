@@ -1,15 +1,12 @@
 # 简介
 
+<!-- markdownlint-disable -->
 <script setup>
   import Voice from '../components/Voice.vue';
   import NpmBadge from '../components/NpmBadge.vue';
 </script>
 
 <NpmBadge package="kotori-bot" />
-
-::: warning
-`KotoriV1` 文档正在建设并完善中
-:::
 
 ---
 
@@ -19,6 +16,8 @@ kotori 是一个**跨平台、解耦合、现代化**于一体的聊天机器人
 
 「Kotori」是一个罗马字，在日语中是「ことり」（小鳥）的意思，发音为 `/kotoliː/` <Voice />，该名字取自于 [Key 公式](http://key.visualarts.gr.jp/) 的游戏 [《Rewrite》](https://bgm.tv/subject/4022) 中主要女性角色之一：[神户小鸟](https://bgm.tv/character/12063) (神戸（かんべ） 小鳥（ことり）)。
 借助 Kotori，可快速搭建一个多平台、功能强大的聊天机器人应用，通过安装不同模块为 Kotori 扩展功能、玩法和个性化配置等。同时，Kotori 为开发者提供了现成的 Cli 用于模块开发与 Kotori 二次开发。
+
+<!-- markdownlint-enable -->
 
 ### 特点
 

@@ -15,7 +15,7 @@ Tsukiko 库本身是用于运行时进行动态类型检查的。比如说,当�
 Tsukiko 提供了多种解析器(Parser),用于定义不同类型的数据结构:
 
 - `NumberParser`: 数字解析器
-- `StringParser`: 字符串解析器 
+- `StringParser`: 字符串解析器
 - `BooleanParser`: 布尔值解析器
 - `NullParser`: Null 解析器
 - `UndefinedParser`: Undefined 解析器
@@ -38,17 +38,17 @@ Tsukiko 提供了多种解析器(Parser),用于定义不同类型的数据结构
 import Tsu, { tsuFactory } from 'tsukiko';
 
 // 定义一个元组 Schema
-const schema = Tsu.Tuple([Tsu.Number()]); 
+const schema = Tsu.Tuple([Tsu.Number()]);
 export type Schema = typeof schema.infer;
 
 // 定义一个数组 Schema
 const schema2 = Tsu.Array(Tsu.String());
 export type Schema2 = typeof schema2.infer;
 
-// 定义一个对象 Schema 
-const schema3 = Tsu.Object({ 
+// 定义一个对象 Schema
+const schema3 = Tsu.Object({
   value: Tsu.Number(),
-  name: schema2, 
+  name: schema2,
   host: Tsu.String().regexp(/http(s)?:\/\/(.*)/),
   port: Tsu.Number().range(1, 65535).int(),
   allowList: Tsu.Array(Tsu.String()),
@@ -57,23 +57,20 @@ const schema3 = Tsu.Object({
 export type Schema3 = typeof schema3.infer;
 
 // 使用交集解析器
-const schema4 = Tsu.Intersection([Tsu.Number(), Tsu.Literal(1)]); 
+const schema4 = Tsu.Intersection([Tsu.Number(), Tsu.Literal(1)]);
 export type Schema4 = typeof schema4.infer;
 
 // 组合使用多个解析器
 const schema5 = Tsu.Intersection([
   Tsu.Literal('hello world'),
-  Tsu.Union([
-    schema,
-    Tsu.Union([Tsu.Number().optional(), schema2])
-  ])
+  Tsu.Union([schema, Tsu.Union([Tsu.Number().optional(), schema2])])
 ]);
 export type Schema5 = typeof schema5.infer;
 
 // 使用索引签名定义 Schema
 const schema6 = Tsu.Object({}).index(
   Tsu.String().regexp(/[0-9]+\.[0-9]+\.[0-9]+/),
-  Tsu.String().regexp(/kotori-plugin-(.*)/),
+  Tsu.String().regexp(/kotori-plugin-(.*)/)
 );
 export type Schema6 = typeof schema6.infer;
 export const example6: Schema6 = {
@@ -81,7 +78,7 @@ export const example6: Schema6 = {
   'kotori-plugin-adapter-wechat': '0.2.0',
   'kotori-plugin-database-sqlite': '2.1.0',
   'kotori-plugin-database-mysql': '3.1.0',
-  'kotori-plugin-help': '1.2.0', 
+  'kotori-plugin-help': '1.2.0',
   'kotori-plugin-wiki': '1.0.0'
 };
 ```
@@ -94,7 +91,7 @@ export const example6: Schema6 = {
 // 定义 bangumi 日历 API 响应数据的 Schema
 const bgmcSchema = Tsu.Array(
   Tsu.Object({
-    weekday: Tsu.Object({ 
+    weekday: Tsu.Object({
       en: Tsu.String(),
       cn: Tsu.String(),
       ja: Tsu.String()
@@ -115,7 +112,7 @@ ctx.command('bgmc - bangumi.descr.bgmc').action(async (_, session) => {
   // ... 使用 res 处理 bgmc 命令
 });
 
-// 定义 Kotori 全局配置的 Schema 
+// 定义 Kotori 全局配置的 Schema
 export const config = Tsu.Intersection([
   Tsu.Object({
     port: Tsu.Number().int().range(1, 65535),
@@ -127,3 +124,4 @@ export const config = Tsu.Intersection([
   Tsu.Union([
     Tsu.Object({ mode: Tsu.Literal('ws') }),
     Tsu.Object({ mode: Tsu.Literal('ws-reverse') })
+```

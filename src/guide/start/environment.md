@@ -14,4 +14,5 @@
 ## IDE & Editor
 
 显然 Kotori 并不属于 Web 前端的范畴，但依旧隶属于 JavaScript 生态，因此推荐 ~~世界上最好的 Web 开发 IDE~~ 「Visual Studio Code」（以下简称「VSC」）。虽然 VSC 本质上只是文本编辑器，但因其强大的扩展商店使其能做到大部分 IDE 的功能，当然你也可以根据你的喜好选择，如：
+
 - WebStorm
