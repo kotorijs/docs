@@ -31,22 +31,22 @@ export default {
         { text: '事件系统（Events）', link: '/guide/base/events' },
         { text: '指令注册（Command）', link: '/guide/base/command' },
         { text: '中间件（Middleware）', link: '/guide/base/middleware' },
-        { text: '正则匹配（RegExp）', link: '/guide/base/regexp' },
-        { text: '计划任务（Schedule）', link: '/guide/base/schedule' }
+        { text: '正则匹配（RegExp）', link: '/guide/base/regexp' }
+        // { text: '计划任务（Schedule）', link: '/guide/base/schedule' }
       ]
     },
     {
       text: '模块化',
       items: [
         { text: '插件范式（Plugin）', link: '/guide/modules/plugin' },
-        { text: '上下文（Context）', link: '/guide/modules/context' },
+        { text: '上下文（Context）', link: '/guide/modules/context' }, // merge with lifecycle
         { text: '配置检测（Schema）', link: '/guide/modules/schema' },
-        { text: '生命周期（Lifecycle）', link: '/guide/modules/lifecycle' },
+        { text: '国际化（i18n）', link: '/guide/modules/i18n' },
         { text: '服务依赖（Service）', link: '/guide/modules/service' }
       ]
     },
     {
-      text: '适配器',
+      text: '组件化',
       items: [
         { text: '实现元素类（Elements）', link: '/guide/adapter/elements' },
         { text: '实现接口类（Api）', link: '/guide/adapter/api' },
@@ -57,10 +57,9 @@ export default {
     {
       text: '扩展功能',
       items: [
-        { text: '滤器', link: '/guide/extend/filter' },
-        { text: '数据库', link: '/guide/extend/database' },
-        { text: '国际化', link: '/guide/extend/i18n' },
-        { text: '日志打印', link: '/guide/extend/logger' },
+        // { text: '滤器', link: '/guide/extend/filter' },
+        // { text: '数据库', link: '/guide/extend/database' },
+        // { text: '日志打印', link: '/guide/extend/logger' },
         { text: '工具类', link: '/guide/extend/tools' }
       ]
     }

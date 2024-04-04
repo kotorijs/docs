@@ -1,12 +1,11 @@
 # 前言
 
-::: tip
-阅读本章前请确保你已阅读完毕 [入门教程](../basic/start)。
-:::
+> [!IMPORTANT]
+> 阅读本章前请确保你已阅读完毕 [入门教程](../basic/start)。
 
 ## 前置要求
 
-> 拥有一定的 JavaScript 与 Node.js 知识基础。
+- 拥有一定的 JavaScript 与 Node.js 知识基础。
 
 Kotori 运行于 Node.js 环境，因此开发 Kotori 模块前掌握 JavaScript 与 Node.js 基础内容是必然的。此处推荐几个文档：
 

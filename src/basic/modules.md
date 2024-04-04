@@ -9,9 +9,11 @@
 - **插件（Plugin）**：为用户提供多种功能、玩法、扩展，数量最多的类型
 - **服务（Service）**：用于提供封装好的接口
 - **适配器（Adapter）**：用于接入各个聊天平台
+
 ## 寻找模块
 
 **[Kotori 模块中心](../modules/)** 内收录了大部分 Kotori 模块。选择所需模块，在详情页中会有插件的基础信息、介绍、使用说明、配置说明等。
+
 ## 下载与安装
 
 此处以「QQ 适配器服务模块」（[@kotori-bot/kotori-plugin-adapter-qq](../modules/#@kotori-bot/kotori-plugin-adapter-qq)）为例。
@@ -36,6 +38,7 @@ pnpm install @kotori-bot/kotori-plugin-adapter-qq
 > GitHub 仓库中存有模块的源码，在当前阶段，你应下载并使用模块的构建产物而非源码。
 
 务必确保解压后的模块文件夹仅有一层文件夹而非多层，否则将无法识别与加载模块。
+
 ### 添加加载目录
 
 > 模块安装在 `./modules` 目录内请忽略该步骤。
@@ -64,6 +67,7 @@ global:
 ## 配置模块
 
 根据安装的模块类型不同，配置策略也将不同。
+
 ### 插件
 
 插件配置数据应写在 `kotori.yml` 的 `plugin.<plugin-name>` 项下，其中 `<plugin-name>` 为插件名字，不应含有包的命名空间与模块前缀，值必须是一个对象。插件的配置项由插件本身提供与指定，并非所有插件本身都会提供配置项。一般地，有提供配置项的插件内都会有一套默认配置，因此不配置也可以正常运行插件。插件的配置和说明可参考该插件的详情页，此处以 「菜单插件」（[@kotori-bot/kotori-plugin-menu](../modules/#@kotori-bot/kotori-plugin-menu)）为例，在详情页查看配置说明后在 `kotori.yml` 中配置相关内容：

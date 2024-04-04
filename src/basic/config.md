@@ -125,6 +125,7 @@ interface AdapterConfig {
 ## AdapterConfig[propName]
 
 除去以上由 Kotori 内部定义的配置项，`extends` 中指定的适配器一般会额外定义配置项用于 Bot 内部，这些配置项也可能不存在或为可选，具体请参考该模块的详情页。
+
 ## plugin
 
 定义插件的配置项。
@@ -146,6 +147,7 @@ interface PluginConfig {
 
 - 值：{}
 - 默认值：{}
+
 ## PluginConfig[propName]
 
 类似于 AdapterConfig 中的 `[propName]`，该插件也可能会定义一些配置项用于插件内部，具体请参考该模块的详情页。
