@@ -69,15 +69,25 @@ my-project
   "name": "kotori-plugin-my-project",
   "version": "1.0.0",
   "description": "This is my first Kotori plugin",
-  "main": "lib/.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsc"
   },
+  "keywords": [
+    "kotori",
+    "chatbot",
+    "kotori-plugin"
+  ],
   "license": "GPL-3.0",
-  "keywords": ["kotori-plugin"],
-  "files": ["lib", "LICENSE", "README.md"],
+  "files": [
+    "lib",
+    "locales",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": "Himeno",
   "peerDependencies": {
-    "kotori-bot": "1.1.0"
+    "kotori-bot": "^1.3.0"
   }
 }
 ```
@@ -103,9 +113,13 @@ my-project
 ```json
 {
   "kotori": {
-    "enforce": "pre",
     "meta": {
-      "languages": ["en_US", "ja_JP", "zh_TW", "zh_CN"]
+      "languages": [
+        "en_US",
+        "ja_JP",
+        "zh_TW",
+        "zh_CN"
+      ]
     }
   }
 }
@@ -115,46 +129,47 @@ my-project
 
 ```json
 {
-    "name": "kotori-plugin-my-project",
-    "version": "1.0.0",
-    "description": "This is my first Kotori plugin",
-    "main": "lib/.js",
-    "scripts": {
-        "build": "tsc --build"
-    },
-    "license": "GPL-3.0",
-    "keywords": [
-        "kotori-plugin"
-    ],
-    "files": [
-        "lib",
-        "LICENSE",
-        "README.md"
-    ],
-    ,
-    "peerDependencies": {
-        "kotori-bot": "1.1.0"
-    },
-    "author": "Himeno <biyuehuya@gmail.com>",
-    "bugs": {
-        "url": "https://github.com/kotorijs/my-project/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/kotorijs/my-project.git"
-    },
-    "homepage": "https://github.com/kotorijs/my-project/",
-    "kotori": {
-        "enforce": "pre",
-        "meta": {
-            "languages": [
-                "en_US",
-                "ja_JP",
-                "zh_TW",
-                "zh_CN"
-            ]
-        }
+  "name": "kotori-plugin-my-project",
+  "version": "1.0.0",
+  "description": "This is my first Kotori plugin",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "kotori",
+    "chatbot",
+    "kotori-plugin"
+  ],
+  "license": "GPL-3.0",
+  "files": [
+    "lib",
+    "locales",
+    "LICENSE",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "kotori-bot": "^1.3.0"
+  },
+  "author": "Himeno <biyuehuya@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/kotorijs/my-project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kotorijs/my-project.git"
+  },
+  "homepage": "https://github.com/kotorijs/my-project/",
+  "kotori": {
+    "meta": {
+      "languages": [
+        "en_US",
+        "ja_JP",
+        "zh_TW",
+        "zh_CN"
+      ]
     }
+  }
 }
 ```
 
