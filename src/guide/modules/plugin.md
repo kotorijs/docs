@@ -4,7 +4,7 @@
 
 恭喜你，只要学习完本章你将成为一名合格的⌈Kotori Developer⌋！在本章将围绕 Kotori 中最重要的概念⌈上下文⌋为你讲解一系列模块化内容。
 
-## 插件
+## 插件与模块
 
 **插件（Plugin）** 是 Kotori 中的最小运行实例，它是模块的真子集，在真正学习到上下文之前，可暂且默认插件等同于模块。
 
@@ -14,7 +14,7 @@
 
 这是一个最小且有效的 package.json 例子：
 
-```typescript
+```json
 {
   "name": "kotori-plugin-my-project",
   "version": "1.0.0",
@@ -75,7 +75,7 @@ interface ModulePackage {
 - `kotori-plugin-adapter-xxx` 表示适配器服务
 - `kotori-plugin-database` 表示数据库
 
-## 元数据信息
+### 元数据信息
 
 在上面例子中，可能你已注意到除了常规的属性以外，还有一个为 `kotori` 的属性，其会被 Kotori 读取用作模块的额外信息，目前其中仅有 `meta` 一个属性，`meta` 之下有两个属性：
 
