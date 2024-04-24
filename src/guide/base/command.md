@@ -390,7 +390,7 @@ ctx.command('question').action(async (_, session) => {
 
 - 两者参数均只有一个且可选
 - `session.prompt()` 参数为 `string`，对应提示消息，返回 `Promise<string>`
-- `session.confirm()` 参数为 `{ message: string, sure: string }`，分别对应提示消息和确认消息（只有），返回 `Promise<boolean>`
+- `session.confirm()` 参数为 `{ message: string, sure: string }`，分别对应提示消息和确认消息（只有用户发送消息与确认消息完全一致时返回 `true` 反之 `false`），返回 `Promise<boolean>`
 
 > [!NOTE]
 > 目前会话交互功能甚少，内容也不全面，如对 i18n 支持不够完善、需手动进行数据校验、Promise 超时等问题，如有能力欢迎你前来帮助 Kotori 完善。
