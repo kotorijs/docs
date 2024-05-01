@@ -15,7 +15,7 @@
 
 #### 小鳥二号
 
-基于 Onebot 标准的 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 项目（[@Kotori-bot/kotori-plugin-adapter-onebot](../modules/#@kotori-bot/kotori-plugin-adapter-onebot)）。相比于官方 QQ 机器人，第三方 QQ 机器人拥有着更健全的基础功能，权限使用上几乎无任何限制，缺点是因某种原因导致 go-cqhttp 等第三方 QQ 机器人项目跑路或归档，稳定性低于官方机器人。
+基于 Onebot11 标准的第三方 QQ 机器人（[@Kotori-bot/kotori-plugin-adapter-onebot](../modules/#@kotori-bot/kotori-plugin-adapter-onebot)）。相比于官方 QQ 机器人，第三方 QQ 机器人拥有着更健全的基础功能，权限使用上几乎无任何限制，缺点是因某种原因导致 go-cqhttp 等第三方 QQ 机器人项目跑路或归档，稳定性低于官方机器人。
 
 > 立即使用：[Kotori 交流群](https://qm.qq.com/q/Z88lFtJbAk)
 
