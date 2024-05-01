@@ -14,7 +14,7 @@ kotori 是一个**跨平台、解耦合、现代化**于一体的聊天机器人
 
 ## 概述
 
-「Kotori」是一个罗马字，在日语中是「ことり」（小鳥）的意思，发音为 `/kotoliː/` <Voice />，该名字取自于 [Key 公式](http://key.visualarts.gr.jp/) 的游戏 [《Rewrite》](https://bgm.tv/subject/4022) 中主要女性角色之一：[神户小鸟](https://bgm.tv/character/12063) (神戸（かんべ） 小鳥（ことり）)。
+「Kotori」是一个罗马字，在日语中是「ことり」（小鳥）的意思，发音为 `/kotolɪ/` <Voice />，该名字取自于 [Key 公式](http://key.visualarts.gr.jp/) 的游戏 [《Rewrite》](https://bgm.tv/subject/4022) 中主要女性角色之一：[神户小鸟](https://bgm.tv/character/12063) (神戸（かんべ） 小鳥（ことり）)。
 借助 Kotori，可快速搭建一个多平台、功能强大的聊天机器人应用，通过安装不同模块为 Kotori 扩展功能、玩法和个性化配置等。同时，Kotori 为开发者提供了现成的 Cli 用于模块开发与 Kotori 二次开发。
 
 <!-- markdownlint-enable -->
@@ -35,7 +35,7 @@ kotori 是一个**跨平台、解耦合、现代化**于一体的聊天机器人
 #### 平台
 
 - QQ（基于 Tencent 官方 API）
-- QQ（基于 Onebot 标准的 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 项目）
+- QQ（基于 Onebot11 标准，适用于 [NapCat](https://github.com/NapNeko/NapCatQQ)、[go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 等项目）
 - CMD 命令行
 
 即将支持：

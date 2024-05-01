@@ -199,7 +199,7 @@ export function main(ctx: Context) {
 }
 ```
 
-导出对象形式它与模块入口文件的导出是一致，在 Kotori 内部，由加载器自动加载所有的模块入口文件进行预处理后，便转接给此处的 `ctx.load()` 进行调用执行主体。不同的是此处可以定义 `name` 属性，用于标记插件的名称，这将作用于该插件的上下文实例的 `ctx.identity` 中，而模块中的 `ctx.identity` 由加载器通过 `package.json` 中的包名自动获取（截取 `kotori-plugin-` 以后字段）。即便是子插件，它的上下文实例与配置数据也是完全独立，区别在于模块（由加载器加载）的上下文实例继承自 Kotori 内部中的根上下文实例，而子插件的上下文实例继承于当前模块的上下文实例，以此类推。再者，入口文件中导出的 `config` 属性是一个配置及检测者，加载器会调用它来验证 `kotori.yml` 中相应的实际配置数据是否正确，正确后将替换 `config` 为实际数据再传入 `ctx.load()` 作后续工作，在模块中执行 `ctx.load()` 配置数据拥有确定性（交由开发者保证，与 Kotori 无关），由此直接传入配置数据。
+导出对象形式与模块入口文件的导出是一致的。在 Kotori 内部，由加载器自动加载所有的模块入口文件进行预处理，然后转接给此处的 `ctx.load()` 进行调用执行主体。不同的是，此处可以定义 `name` 属性用于标记插件的名称，这将作用于该插件的上下文实例的 `ctx.identity` 中，而模块中的 `ctx.identity` 由加载器通过 `package.json` 中的包名自动获取（仅保留 `kotori-plugin-` 以后字段）。即便是子插件，它的上下文实例与配置数据也是完全独立，区别在于模块（由加载器加载）的上下文实例继承自 Kotori 内部中的根上下文实例，而子插件的上下文实例继承于当前模块的上下文实例，以此类推。入口文件中导出的 `config` 是一个配置检测者，加载器会调用它来验证 `kotori.yml` 中相应的实际配置数据是否符合要求，符合则将替换 `config` 为实际数据再传入 `ctx.load()` 作后续处理，在模块中执行 `ctx.load()`，其配置数据拥有确定性（指由开发者保证，与 Kotori 无关），因此要求此处直接传入配置数据。
 
 ```yaml
 plugin:
@@ -243,10 +243,19 @@ export function main(ctx: Context) {
 }
 ```
 
-当然你也可以指定多个函数主体，这将会验证上一节所讲的执行主体的识别顺序，因此这只会执行其中一个：`
+当然你也可以指定多个函数主体，这将会验证上一节所讲的执行主体的识别顺序，因此这只会执行其中一个：
 
 ```typescript
-
+export function main(ctx: Context) {
+  ctx.load({
+    name: 'plugin1',
+    inject: ['database']
+    main: (subCtx: Context) => {
+      /* ctx.database... */
+    }
+  });
+  ctx.logger.debug(ctx.database) // undefined
+}
 ```
 
 加载一个依赖了 `database` 服务的子插件便可在其内部进行调用数据库操作，而在外层的模块中，并未依赖因此无法使用 `ctx.database` 属性。
