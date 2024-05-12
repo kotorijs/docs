@@ -1,7 +1,7 @@
 export default {
   '/basic/': [
     {
-      items: [{ text: '简介', link: '/basic/introduce' }]
+      items: [{ text: '简介', link: '/basic/' }]
     },
     {
       text: '入门',
@@ -15,7 +15,7 @@ export default {
   ],
   '/guide/': [
     {
-      items: [{ text: '前言', link: '/guide/nav' }]
+      items: [{ text: '前言', link: '/guide/' }]
     },
     {
       text: '准备流程',
