@@ -10,7 +10,7 @@ hero:
   actions:
     - theme: brand
       text: 开始使用👉
-      link: /basic/introduce
+      link: /basic/
     - theme: alt
       text: 发行下载🐦
       link: https://github.com/kotorijs/kotori/releases
