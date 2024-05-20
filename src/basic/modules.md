@@ -18,7 +18,7 @@
 
 此处以「QQ 适配器服务模块」（[@kotori-bot/kotori-plugin-adapter-qq](../modules/#@kotori-bot/kotori-plugin-adapter-qq)）为例。
 
-> 模块的包名除去 `@xxx/` 的部分（如果有），会有一段相似的开始字段，将其称之为「**模块前缀**」。通过模块前缀可判断模块类型，如「kotori-plugin-adapter-xxx」表示**适配器服务**，「kotori-plugin-database-xxx」表示**数据库服务**，「kotori-plugin-xxx」表示**插件**或**自定义服务**，详细内容请参考 [开发文档 - 插件范式](../guide/modules/plugin)。
+> 模块的包名除去 `@xxx/` 的部分（如果有），会有一段相似的开始字段，将其称之为「**模块前缀**」。通过模块前缀可判断模块类型，如「kotori-plugin-adapter-xxx」表示**适配器**，「kotori-plugin-database-xxx」表示**数据库服务**，「kotori-plugin-xxx」表示**插件**或**自定义服务**，详细内容请参考 [开发文档 - 插件范式](../guide/modules/plugin)
 
 ### 使用包管理工具
 
@@ -30,18 +30,18 @@ pnpm install @kotori-bot/kotori-plugin-adapter-qq
 
 ### 手动下载安装
 
-> 该方法仅在必要情况下建议使用。
+> 该方法仅在必要情况下建议使用
 
 在模块详情页里跳转至对应的 npm 地址或 GitHub 地址，下载模块的构建产物。
 解压压缩包并移动至 Kotori 根目录下的 `./modules/` 内。
 
-> GitHub 仓库中存有模块的源码，在当前阶段，你应下载并使用模块的构建产物而非源码。
+> GitHub 仓库中存有模块的源码，在当前阶段，你应下载并使用模块的构建产物而非源码
 
 务必确保解压后的模块文件夹仅有一层文件夹而非多层，否则将无法识别与加载模块。
 
 ### 添加加载目录
 
-> 模块安装在 `./modules` 目录内请忽略该步骤。
+> 模块安装在 `./modules` 目录内请忽略该步骤
 
 通过包管理工具安装的模块一般会安装在 Kotori 根目录下的 `./node_modules/` 内，如若插件包名带有 `@xxx/` 的前缀，表示为包的命名空间，上述示例模块中的「@kotori-bot/」为 Kotori 官方包的命名空间，表示**官方模块**，其余的命名空间或无命名空间的模块为**社区模块**。
 
@@ -105,7 +105,7 @@ adapter:
     self-id: 720
 ```
 
-> cmd 适配器即「[@kotori-bot/kotori-plugin-adapter-cmd](../modules/#@kotori-bot/kotori-plugin-adapter-cmd)」，属于 kotori 预装模块之一，为 kotori 程序当前所在控制台提供聊天交互功能，也是最方便的测试机器人的场所（但并不推荐，因为只支持文字交互，模块开发有更好的测试场所选择，详细内容请参考 [开发文档 - 项目构建](../guide/start/setup)）。
+> cmd 适配器即「[@kotori-bot/kotori-plugin-adapter-cmd](../modules/#@kotori-bot/kotori-plugin-adapter-cmd)」，属于 kotori 预装模块之一，为 kotori 程序当前所在控制台提供聊天交互功能，也是最方便的测试机器人的场所（但并不推荐，因为只支持文字交互，模块开发有更好的测试场所选择，详细内容请参考 [开发文档 - 项目构建](../guide/start/setup)）
 
 不过此处使用的 cmd 适配器定义的配置项均有默认值因此为可选。接着使用「@kotori-bot/kotori-plugin-adapter-qq」适配器再创建一个 Bot：
 
