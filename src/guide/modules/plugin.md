@@ -163,7 +163,7 @@ export function main(ctx: Context) {
 }
 ```
 
-通过 `inject` 变量定义模块的依赖服务，它是一个字符串数组，数组中的每个值都必须是已注册的服务名称，服务包括 Kotori 内置服务与第三方模块提供的服务。尽管服务实例只要一经定义就会因声明合并的缘故显示在 `Context` 实例上，但请注意，除了内置的 `Cache` 服务会自动挂载到所有 `Context` 实例上以外，其它内置服务和所有的第三方服务均需要使用 `inject` 进行指明后才可在 `Context` 上直接访问、使用。此处依赖了 `database` 数据库服务，并通过监听 `ready` 事件（当加载完所有模块时）进行数据库初始化操作。
+通过 `inject` 变量定义模块的依赖服务，它是一个字符串数组，数组中的每个值都必须是已注册的服务名称，服务包括 Kotori 内置服务与第三方模块提供的服务。尽管服务实例只要一经定义就会因声明合并的缘故显示在 `Context` 实例上，但请注意，所有服务均不会自动挂载到 `Context` 实例上，无论是内置服务和还是第三方服务均需要使用 `inject` 进行声明后才可在 `Context` 上直接访问、使用。此处依赖了 `database` 数据库服务，并通过监听 `ready` 事件（当加载完所有模块时）进行数据库初始化操作。
 
 ## 模块风格与范式
 
@@ -204,15 +204,21 @@ export function main(ctx: Context, cfg: Tsu.infer<typeof config>) {
 ```typescript
 import { Context, Tsu } from 'kotori-bot';
 
+/*
 export const lang = [__dirname, '../locales'];
 
-export const config = Tsu.Object({
-  /* ... */
-});
+export const config = Tsu.Object({ /* ... */ });
 
 export const inject = ['database'];
+*/
 
 export class Main {
+  public static lang = [__dirname, '../locales'];
+
+  public static config = Tsu.Object({ /* ... */ });
+
+  public static inject = ['database'];
+
   public constructor(
     private ctx: Context,
     private cfg: Tsu.infer<typeof config>
@@ -221,6 +227,8 @@ export class Main {
   }
 }
 ```
+
+在导出类式中，可同时在外部导出诸如 `config`、`lang`、`inject` 属性，也可在类中设置相应的静态属性，一般地，请使用后者。如若两者同时存在，类中的属性将会覆盖外部导出的属性。
 
 诚然，Kotori 目前对导出类式的支持并不全面，它看起来仅仅是将原本的导出函数替换成导出类后调用其构造函数，并未充分发挥类的特性，但如果你很喜欢面向对象编程，这或许还是很适合你的。不过有一点注意，为与函数区分，导出函数式的函数名使用 `main` 而导出类式的类名使用 `Main`，如若两者互换将不会被 Kotori 识别为有效的模块。
 
@@ -275,7 +283,7 @@ Kotori.command(/* ... */);
 Kotori.regexp(/* ... */);
 ```
 
-通过直接访问 `kotori-bot` 模块默认导出的 `Kotori` 对象进行各种操作，包括注册国际化文件目录、服务、中间件、指令、正则匹配等，再而对于不会自动挂载的服务实例则通过 `ctx.get()` 方法手动获取。`Kotori` 对象本身即为一个 `Context` 实例，但它并不是本体而是一个双重 `Proxy`。这种方式的优点是简单和灵活，但缺点是不够模块化，且有副作用，对于开发 Kotori 模块强烈不推荐使用该方式，因为它违背了 Kotori 的原则。如果你基于 Kotori 为依赖库开发一个新的库，则推荐使用该方式
+通过直接访问 `kotori-bot` 模块默认导出的 `Kotori` 对象进行各种操作，包括注册国际化文件目录、服务、中间件、指令、正则匹配等，对于服务实例则通过 `ctx.get()` 手动获取（或者通过 `ctx.inject()` 手动挂载，具体内容参考下一节）。`Kotori` 对象本身即为一个 `Context` 实例，但它并不是本体而是一个双重 `Proxy`。这种方式的优点是简单和灵活，但缺点是不够模块化，且有副作用，对于开发 Kotori 模块强烈不推荐使用该方式，因为它违背了 Kotori 的原则。如果你基于 Kotori 为依赖库开发一个新的库，则推荐使用该方式。
 
 <!-- TODO: 更新链接 -->
 
@@ -284,62 +292,55 @@ Kotori.regexp(/* ... */);
 ### 装饰器式
 
 ```typescript
-import { plugins, Tsu, EventsList, CommandAction, Context, MessageScope } from 'kotori-bot';
+import { Tsu, CommandAction, Context, MessageScope, plugins, SessionData } from 'kotori-bot';
 
-const plugin = plugins({
-  name: 'kotori-plugin-testing',
-  kotori: {
-    meta: {
-      languages: ['en_US', 'ja_JP', 'zh_TW', 'zh_CN']
-    }
+const plugin = plugins([__dirname, '../']);
+
+@plugin.import
+export default class Plugin {
+  private ctx: Context;
+
+  private config: Tsu.infer<typeof Plugin.schema>;
+
+  @plugin.lang
+  public static lang = [__dirname, '../locales'];
+
+  @plugin.schema
+  public static schema = Tsu.Object({ /* ... */ });
+
+  @plugin.inject
+  public static inject = ['database'];
+
+  public constructor(ctx: Context, config: Tsu.infer<typeof Plugin.schema>) {
+    this.ctx = ctx;
+    this.config = config;
   }
-});
-// equal to: const plugin = plugins(loadConfig(`${__dirname}/../package.json`));
-// equal to: const plugin = plugins(path.join(__dirname, '../package.json'));
-// equal to: const plugin = plugins([__dirname, '../package.json']);
 
-const kotoriConfigSchema = Tsu.Object({
-  /* ... */
-});
-
-@plugin.import({
-  lang: [__dirname, '../locales'],
-  config: kotoriConfigSchema, // 自定义插件配置
-  inject: ['database'] // 设置全局的依赖服务
-})
-class Plugin {
-  public constructor(
-    private Ctx: Context,
-    private cfg: Tsu.infer<typeof kotoriConfigSchema>
-  ) {}
-
-  @plugin.event({ type: 'group_decrease', inject: ['database'] })
-  public groupDecrease(session: EventsList['group_decrease']) {
-    /* ... */
+  @plugin.on({ type: 'on_group_decrease' })
+  public groupDecrease(session: SessionData) {
+     // ...
   }
 
   @plugin.midware({ priority: 10 })
-  public midware(next: () => void, session: EventsList['midwares']) {
-    /* ... */
+  public midware(next: () => void, session: SessionData) {
+    // ...
   }
 
-  @plugin
-    .command({
-      template: 'echo <content> [num:number=3]',
-      scope: MessageScope.GROUP
-    })
-    .alias('print')
-  public echo(data: Parameters<CommandAction>[0], session: Parameters<CommandAction>[1]) {
-    /* ... */
+  @plugin.command({
+    template: 'echo <content> [num:number=3]',
+    scope: MessageScope.GROUP
+  })
+  public echo(data: Parameters<CommandAction>[0], session: SessionData) {
+    // ...
   }
 
-  @plugin.regexp({ regexp: /^(.*)#print$/ })
-  public print(match: RegExpExecArray) {
+  @plugin.regexp({ match: /^(.*)#print$/ })
+  public static print(match: RegExpExecArray) {
     return match[1];
   }
 }
 ```
 
-以上是一个简单的装饰器式示例，与导出式相比，它的风格截然不同，语法上它足够的优雅。通过从模块自己创造全局唯一的实例对象 `plugin`，在其基础上使用装饰器注册的各种内容，天生即具有良好的扩展性和模块化性。装饰器特性更常见于后端或服务端语言中，在 Web 中使用较多的为 Angular、Nest.js 等深受后端架构思想（主要指 Spring）熏陶的框架。为数不多的缺点是它需要手动声明类型且对新手而言不容易上手，但如若你有足够的基础则强烈推荐使用。
+以上是一个简单的装饰器式示例，与导出式相比，它的风格截然不同，语法上它足够的优雅。模块自己主动创造全局唯一的实例对象 `plugin`，在其基础上使用装饰器注册的各种内容，天生即具有良好的扩展性和模块化性。装饰器特性更常见于后端或服务端语言中，在 Web 中使用较多的为 Angular、Nest.js 等深受后端架构思想（主要指 Spring）熏陶的框架。为数不多的缺点是它需要手动声明类型且对新手而言不容易上手，但如若你有足够的基础则强烈推荐使用。
 
-当然，这并不算在此展开详细介绍，它还需要你了解一点其它内容作为基础，因而它被放在本章最后一节进行讲述。
+当然，这并不算在此展开详细介绍，它还需要你了解一点其它内容作为基础，因而它被放在本章最后一节进行具体讲述。

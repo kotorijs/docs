@@ -5,11 +5,12 @@
 - [npmjs.org](https://npmjs.org)
 - [Kotori 模块中心](../../modules/)
 - 开源社区：[GitHub](https://github.com)
-  优先级（重要程度）：npm > 模块中心 > 开源社区。每一个公开的 Kotori 模块都应发布至 npm 并作为模块的主要获取途径。Kotori 使用 GPL-3.0 协议，该协议要求 Kotori 的所有模块及其二次开发项目也必须使用 GPL-3.0 协议且开源，因此发布到开源社区是必要的，开源行为本身也是一种无私奉献、共享知识和回馈社区的体现。
+
+优先级（重要程度）：npm > 模块中心 > 开源社区。每一个公开的 Kotori 模块都应发布至 npm 并作为模块的主要获取途径。Kotori 使用 GPL-3.0 协议，该协议要求 Kotori 的所有模块及其二次开发项目也必须使用 GPL-3.0 协议且开源，因此发布到开源社区是必要的，开源行为本身也是一种无私奉献、共享知识和回馈社区的体现。
 
 ## 构建产物
 
-「构建产物」在 JavaScript 生态中指将源码（Kotori 模块开发中一般为 `TypeScript` 文件）进行处理以适用于生产环境中（处理过程一般有 TypeScript 转为 JavaScript、向下兼容语法、压缩代码等）。JavaScript 生态中构建工具非常多，你可以选择喜欢的构建工具并自习配置，当然如果你对此并不了解也可以使用 Kotori 默认的构建方式（通过TypeScript 自带的 tsc 程序），在你的模块根目录中输入以下指令：
+「构建产物」在 JavaScript 生态中指将源码（Kotori 模块开发中一般为 TypeScript 文件）进行处理以适用于生产环境中（处理过程一般有 TypeScript 转为 JavaScript、向下兼容语法、压缩代码等）。JavaScript 生态中构建工具非常多，你可以选择喜欢的构建工具并自习配置，当然如果你对此并不了解也可以使用 Kotori 默认的构建方式（通过TypeScript 自带的 tsc 程序），在你的模块根目录中输入以下指令：
 
 ```bash
 pnpm build
@@ -32,11 +33,11 @@ pnpm build
 
 ## 文件忽略
 
-对于模块发布主要分为发布构建产物（publish）与发布源码（push），两种情况下需要发布的文件内容会有些许不同，因此便引入了「文件忽略」。
+对于模块发布主要分为发布构建产物（publish）与推送源码（push），两种情况下需要发布的文件内容会有些许不同，因此便引入了「文件忽略」。
 
 ### .npmignore
 
-用于指定在使用 `publish` 时忽略的文件与文件夹，在模块根目录创建一个 `.npmignore` 文件：
+用于指定在发布构建产物时忽略的文件与文件夹，在模块根目录创建一个 `.npmignore` 文件：
 
 ```int
 node_modules
@@ -47,7 +48,7 @@ tsconfig.json
 !README.md
 ```
 
-实际上在 `publish` 时只需要附带少数文件即可，而 `.npmignore` 采用的是黑名单机制显得很繁琐，因此 Kotori 模块的默认模板中并未使用该方式也并不推荐。
+实际上在发布构建产物时只需要附带少数文件即可，而 `.npmignore` 采用的是黑名单机制显得很繁琐，因此 Kotori 模块的默认模板中并未使用该方式，也并不推荐。
 
 ### package.files
 
@@ -63,7 +64,7 @@ tsconfig.json
 
 ### .gitignore
 
-不同于前两者，`.gitignore` 用于指定在使用 Git 进行 `push` 时需要忽略的文件，语法与 `.npmignore` 类似，同样位于模块根目录：
+不同于前两者，`.gitignore` 用于指定在使用 Git 进行版本控制时需要忽略的文件，语法与 `.npmignore` 类似，同样位于模块根目录：
 
 ```ini
 node_modules
@@ -84,7 +85,7 @@ kotori.dev.yml
 
 ## 发布构建产物
 
-使用工作区开发时，需确保当前为待发布模块根目录。首先检查 npm 源是否为 `http://registry.npmjs.org`：
+使用工作区开发时，需确保当前为待发布模块根目录，而非工作区根目录。首先检查 npm 源是否为 `http://registry.npmjs.org`：
 
 ```bash
 npm config get registry
@@ -104,11 +105,11 @@ npm login
 npm publish
 ```
 
-一般地，访问 npm 个人页即可查看刚才发布的插件： [kotori-plugin-my-project](https://www.npmjs.com/package/kotori-plugin-my-project)。
+当没有任何意外问题时，访问 npm 个人页即可查看刚才发布的插件： [kotori-plugin-my-project](https://www.npmjs.com/package/kotori-plugin-my-project)。
 
 ## 发布源码
 
-使用 Git 前务必先配置好你的账号、邮箱和与 GitHub 通信的 ssh，可参考 [手把手教你配置 git 和 git 仓库](https://www.cnblogs.com/techflow/p/13703721.html)。使用工作区开发时，可选择发布整个工作区也可仅发布单个模块，切换到相应的目录即可。首先在 [GitHub New](https://github.com) 页面创建一个远程仓库，接着在本地仓库中关联到该远程仓库：
+使用 Git 前务必先配置好你的账号、邮箱和与 GitHub 通信的 ssh，可参考 [手把手教你配置 git 和 git 仓库](https://www.cnblogs.com/techflow/p/13703721.html)。使用工作区开发时，可选择发布整个工作区也可仅发布单个模块，切换到相应目录即可。首先在 [GitHub New](https://github.com) 页面创建一个远程仓库，接着在本地仓库中关联到该远程仓库：
 
 ```bash
 git remote add origin git@github.com:kotorijs/kotori-plugin-my-project
@@ -131,7 +132,26 @@ git push --tags
 
 ## 收录至模块市场
 
-该内容待更新....
+前往 [Kotori Docs](https://github.com/kotorijs/docs) 仓库将其 fork 到你的账号名下，修改 fork 的仓库中的 `src/public/data.json` 文件，在该文件中追加你的模块的包名与描述：
+
+```json
+{
+  // ...
+  {
+    "name": "kotori-plugin-my-project",
+    "description": "这是一个"
+  }
+  // ...
+}
+```
+
+- `name` 务必与发布到 npm 的包名一致
+- 请按照包名的字母依次排序，如若有命名空间（@xxxx/）请提到最前，并根据包命名空间、包名的字母依次排序
+- `description` 不应过长，但需大致概括模块内容
+- 请注意 JSON 格式规范
+
+完成文件更改后向源仓库发起 pull request 等待审定。所有新的 pull request 一般会在十二小时内审定完毕，当上述注意事项均无误时将会被合并到源仓库，届时你可在 [Kotori 模块中心](https://kotori.js.org/modules/) 查看你的模块。
+
 
 ## 放在最后
 
