@@ -74,7 +74,7 @@ function getNpmData(registry: string, item: ModulesData['list'][number]) {
   .catch(console.error)
   .finally(() => {
     if (DATA_META) DATA_META.total = DATA_LIST.length;
-    const DATA_DETAILS = { meta: DATA_META, list: DATA_LIST };
+    const DATA_DETAILS = { meta: DATA_META, list: DATA_LIST.sort((a,b) => b.time.modified - a.time.modified) };
     writeFileSync(DATA_DETAILS_FILE, JSON.stringify(DATA_DETAILS, null, 2));
 
     console.timeEnd();
