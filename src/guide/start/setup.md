@@ -1,6 +1,10 @@
 # 项目构建
 
-## 基于 create-kotori 直接构建
+<!-- TODO: LINK -->
+
+在本阶段中开发模块一并通过搭建工作区开发，此外还可通过克隆 Kotori 源码或单独创建包进行开发，对于前者请参考 [深入了解](https://kotori.js.org/advanced/)，对于后者则无需赘述。
+
+## 基于 create-kotori 快速搭建工作区
 
 「[create-kotori](https://github.com/kotorijs/create-kotori)」是专用于构建 Kotori 模块的 Cli 工具。
 
@@ -173,7 +177,7 @@ my-project
 }
 ```
 
-> 关于 `package.json` 的默认配置项与更多信息请参考 [npm Docs](https://docs.npmjs.com/cli/v6/configuring-npm/package-json/)。
+> 关于 `package.json` 的默认配置项与更多信息请参考 [npm Docs](https://docs.npmjs.com/cli/v6/configuring-npm/package-json/)
 
 ## index.ts
 
@@ -222,6 +226,11 @@ adapter:
 ```
 
 ### 运行模式
+
+<!-- TODO: update -->
+
+> [!WARN]
+> 以下内容有待更新
 
 运行模式分为 「生产模式（Build）」与「开发模式（Dev）」两种：
 
