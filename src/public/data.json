@@ -4,12 +4,32 @@
   },
   "list": [
     {
+      "name": "@kotori-bot/adapter-discord",
+      "description": "Discord 适配器"
+    },
+    {
+      "name": "@kotori-bot/adapter-mail",
+      "description": "电子邮箱适配器"
+    },
+    {
+      "name": "@kotori-bot/adapter-slack",
+      "description": "Slack 适配器"
+    },
+    {
+      "name": "@kotori-bot/adapter-telegram",
+      "description": "Telegram 适配器"
+    },
+    {
+      "name": "@kotori-bot/adapter-onebot",
+      "description": "基于 OneBot11 标准的适配器"
+    },
+    {
       "name": "@kotori-bot/kotori-plugin-access",
       "description": "权限插件，用于设置多个机器人管理员"
     },
     {
       "name": "@kotori-bot/kotori-plugin-adapter-onebot",
-      "description": "基于 Onebot 标准的适配器"
+      "description": "基于 OneBot11 标准的适配器"
     },
     {
       "name": "@kotori-bot/kotori-plugin-adapter-qq",
@@ -110,6 +130,10 @@
     {
       "name": "kotori-plugin-penis",
       "description": "查看今日牛牛的长度和排行"
+    },
+    {
+      "name": "kotori-plugin-rand",
+      "description": "数学计算、随机操作、投骰子、扔硬币！"
     },
     {
       "name": "kotori-plugin-randomimg",
