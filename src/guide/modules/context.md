@@ -199,12 +199,11 @@ export function main(ctx: Context) {
 }
 ```
 
-导出对象形式与模块入口文件的导出是一致的。在 Kotori 内部，由加载器自动加载所有的模块入口文件进行预处理，然后转接给此处的 `ctx.load()` 进行调用执行主体。不同的是，此处可以定义 `name` 属性用于标记插件的名称，这将作用于该插件的上下文实例的 `ctx.identity` 中，而模块中的 `ctx.identity` 由加载器通过 `package.json` 中的包名自动获取。即便是子插件，它的上下文实例与配置数据也是完全独立，区别在于模块（由加载器加载）的上下文实例继承自 Kotori 内部中的根上下文实例，而子插件的上下文实例继承于当前模块的上下文实例，以此类推。入口文件中导出的 `config` 是一个配置检测者，加载器会调用它来验证 `kotori.yml` 中相应的实际配置数据是否符合要求，符合则将替换 `config` 为实际数据再传入 `ctx.load()` 作后续处理，在模块中执行 `ctx.load()`，其配置数据拥有确定性（指由开发者保证，与 Kotori 无关），因此要求此处直接传入配置数据。
+导出对象形式与模块入口文件的导出是一致的。在 Kotori 内部，由加载器自动加载所有的模块入口文件进行预处理，然后转接给此处的 `ctx.load()` 进行调用执行主体。不同的是，此处可以定义 `name` 属性用于标记插件的名称，这将作用于该插件的上下文实例的 `ctx.identity` 中，而模块中的 `ctx.identity` 由加载器通过 `package.json` 中的包名自动获取。即便是子插件，它的上下文实例与配置数据也是完全独立，区别在于模块（由加载器加载）的上下文实例继承自 Kotori 内部中的根上下文实例，而子插件的上下文实例继承于当前模块的上下文实例，以此类推。入口文件中导出的 `config` 是一个配置检测者，加载器会调用它来验证 `kotori.toml` 中相应的实际配置数据是否符合要求，符合则将替换 `config` 为实际数据再传入 `ctx.load()` 作后续处理，在模块中执行 `ctx.load()`，其配置数据拥有确定性（指由开发者保证，与 Kotori 无关），因此要求此处直接传入配置数据。
 
-```yaml
-plugin:
-  my-project:
-    value: 'here is a string'
+```toml
+[plugin.my-project]
+value = 'here is a string'
 ```
 
 ```typescript
@@ -243,25 +242,76 @@ export function main(ctx: Context) {
 }
 ```
 
+上述代码加载了一个依赖 `database` 服务的子插件，便可在其内部进行调用数据库操作，而在外层的模块中，并未依赖因此无法使用 `ctx.database` 属性。
+
 当然你也可以指定多个函数主体，这将会验证上一节所讲的执行主体的识别顺序，因此这只会执行其中一个：
 
 ```typescript
 export function main(ctx: Context) {
   ctx.load({
     name: 'plugin1',
-    inject: ['database']
     main: (subCtx: Context) => {
-      /* ctx.database... */
-    }
+	    subCtx.logger.debug('will not be loaded');
+    },
+    Main: class {
+	    constructor(subCtx: Context) {
+		    subCtx.logger.debug('will not be loaded');
+		}
+    },
+    default: (subCtx: Context) => {
+	    subCtx.logger.deug('will be loaded');
+    }    
   });
-  ctx.logger.debug(ctx.database) // undefined
 }
 ```
 
-加载一个依赖了 `database` 服务的子插件便可在其内部进行调用数据库操作，而在外层的模块中，并未依赖因此无法使用 `ctx.database` 属性。
-
-此外，还有一项实验性功能，可直接将字符串（TypeScript/JavaScript 文件路径）作为参数传入 `ctx.load()`，但因其原本的加载文件功能被放置到加载器中实现，`ctx.load()` 仅会以同步形式直接调用执行主体，传入文件路径则会先动态加载文件，因此 `ctx.load()` 此时将变成一个异步函数。
+此外，也可以外层调用 CommonJS 规范的 `require()` 或 ESModule 规范的 `import()` 方法，两个方法将会返回动态导入文件的导出对象，区别在于前者是同步执行后者为异步执行，这将间接实现动态导入并加载外部 TypeScript/JavaScript 文件的插件。
 
 ```typescript
+/** File structures
+ * src
+ * * index.ts
+ * * plugin.ts
+*/
 
+export async function main(ctx: Context) {
+	// Wrong way of writing
+	ctx.load(require('./plugin.js'));
+	// or:
+	ctx.load(await import('./plugin.ts'));
+	
+	// Correct but not perfect writing
+	const file = `./plugin.${ctx.options.mode === 'dev' ? '.ts' : '.js'}`;
+	ctx.load(require(file));
+	// or:
+	ctx.load(await import(file));	
+}
 ```
+
+> [!WARN]
+> 请慎重并正确使用该操作，绝对不可直接导入 `.ts` 或 `.js` 后缀的路径
+
+因 Kotori 运行模式不同，直接导入带后缀的路径并不可取。在开发模式中，Kotori **v1.5.0** 及以上版本通过 [tsx](https://github.com/privatenumber/tsx) 运行，同时支持 TS/JS 文件，在 **v1.5.0** 以下版本通过 [ts-node](https://github.com/TypeStrong/ts-node) 运行，仅支持 TS 文件；在生产模式中，通过 Node.js 运行，仅支持 JS 文件。因此，为使你的模块更加坚固，考虑并适配不同情况是必要的。在上述代码中，通过上下文实例获取到当前运行模式以返回不同的文件扩展名动态导入，但这并不完全可靠和优雅。
+
+```typescript
+/** File structures
+ * src
+ * * index.ts
+ * * plugin
+ * * * index.ts
+*/
+
+import type { Context } from 'kotori-bot';
+import { resolve } from 'node:path';
+
+export function main(ctx: Context) {
+	ctx.load(require(resolve('./plugin')));
+	// Async version which better handled
+	import(resolve('./plugin'))
+	  .then((plugin) => ctx.load(plugin))
+	  .catch((err) => ctx.logger.error('Error in dynamic import plugin!', err));
+	
+}
+```
+
+在这一版中，通过改变文件目录结构并利用入口文件特性，以直接减少代码中多余的判断逻辑，并且通过 `node:path` 模块将输入路径处理成绝对路径。此外，在使用 `import()` 时进行异步处理与错误捕获，而非使用 `await` 关键字进行同步操作。对于两种方式，优缺点请自行甄别与选择使用，但值得一提的是，Kotori 加载器（`@kotori-bbot/loader`）在实现自动加载目录下所有有效 npm 模块时，为杜绝异步操作的传染性，因而选择 `require()` 实现。

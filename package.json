@@ -10,14 +10,11 @@
     "build:only": "vitepress build",
     "build": "pnpm revision && vitepress build",
     "preview": "vitepress preview",
-    "revision": "pnpx tsx scripts/revision",
-    "format": "prettier --write **/*/*.{ts,vue,md}",
-    "lint": "eslint --ext .ts,.vue --fix"
+    "revision": "pnpx tsx scripts/revision"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "@types/node": "^20.14.2",
-    "eslint": "^8.56.0",
-    "prettier": "^3.2.4",
     "vitepress": "latest",
     "vue": "^3.4.18"
   }

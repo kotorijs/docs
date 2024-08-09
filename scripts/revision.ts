@@ -38,7 +38,10 @@ function getNpmData(registry: string, item: ModulesData['list'][number]) {
         description,
         category,
         version: latestVersion,
-        author: res.maintainers[0],
+        author: {
+          name:res.maintainers[0].name === 'biyuehu' ? 'Arimura Sena' : res.maintainers[0].name,
+          email:res.maintainers[0].email
+        },
         time: {
           created: new Date(res.time.created).getTime(),
           modified: new Date(res.time.modified).getTime()
