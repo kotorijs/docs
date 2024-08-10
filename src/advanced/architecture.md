@@ -18,7 +18,7 @@ and linter and formatter by [Biome](https://biomejs.dev/) (fucks eslint and pret
 <NpmBadge package="fluoro" />
 
 Fluoro is universal meta-framework,provides `Context` `Modules` and `Events`.
-it is the base of whole Kotori,more details view [Fluoro](./fluoro.md).
+it is the base of whole Kotori,more details view [Fluoro](./).
 
 ### @kotori-bot/core
 

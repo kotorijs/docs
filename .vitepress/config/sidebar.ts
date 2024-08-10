@@ -65,8 +65,8 @@ export default {
     }
   ],
   '/advanced/': [
+    { text: '氟框架', link: '/advanced/' },
     { text: '架构', link: '/advanced/architecture' },
-    { text: '氟框架', link: '/advanced/fluoro' },
     {
       text: '开发',
       items: [
