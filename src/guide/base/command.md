@@ -302,7 +302,7 @@ type ObjectArgs = Record<string, CommandArgType>;
 type ArrayArgs = CommandArgType[];
 ```
 
-`session.format()` 方法是一个简单的模板字符串替换工具（此处请区别于 JavaScript 中的 ⌈模板字符串⌋）。接收两个参数：
+`session.format()` 方法是一个简单的模板字符串替换工具（此处请区别于 JavaScript 中的 「模板字符串」）。接收两个参数：
 
 1. 源字符串
 2. 模板字符串参数，其类型有两种，分别为 `ObjectArgs`、`ArrayArgs`。
@@ -454,4 +454,4 @@ export function main(ctx: Context) {
 
 <!-- TODO: here api reference link -->
 
-> `ctx.http` 是一个网络请求工具，基于 Axios 封装，具体内容参考接口文档；此处的⌈检查数据的操作⌋实际上指 Schema，这将在第三章中讲解
+> `ctx.http` 是一个网络请求工具，基于 Axios 封装，具体内容参考接口文档；此处的「检查数据的操作」实际上指 Schema，这将在第三章中讲解

@@ -25,12 +25,13 @@
 复制模块详情页里中的安装指令，或手动输入对应模块的 npm 包名，在 Kotori 根目录运行：
 
 ```bash
-pnpm install @kotori-bot/kotori-plugin-adapter-qq
+npm install @kotori-bot/kotori-plugin-adapter-qq
 ```
 
 ### 手动下载安装
 
-> 该方法仅在必要情况下建议使用
+> [!WARNING]
+> 该方法目前仅建议插件开发者在工作区下可适当使用。
 
 在模块详情页里跳转至对应的 npm 地址或 GitHub 地址，下载模块的构建产物。
 解压压缩包并移动至 Kotori 根目录下的 `./modules/` 内。
@@ -54,14 +55,15 @@ pnpm install @kotori-bot/kotori-plugin-adapter-qq
 
 对应配置为：
 
-```yaml
-global:
-  dirs:
-    - ./node_modules/
-    - ./node_modules/@kotori-bot/
-    # 上面为默认配置的加载目录
-    - ./node_modules/@custom-scope/
-    - ./test_modules
+```toml
+[global]:
+dirs = [
+  "./node_modules/",
+  "./node_modules/@kotori-bot/",
+  # 上面为默认配置的加载目录
+  "./node_modules/@custom-scope/",
+  "- ./test_modules"
+]
 ```
 
 ## 配置模块
@@ -72,61 +74,57 @@ global:
 
 插件配置数据应写在 `kotori.yml` 的 `plugin.<plugin-name>` 项下，其中 `<plugin-name>` 为插件名字，不应含有包的命名空间与模块前缀，值必须是一个对象。插件的配置项由插件本身提供与指定，并非所有插件本身都会提供配置项。一般地，有提供配置项的插件内都会有一套默认配置，因此不配置也可以正常运行插件。插件的配置和说明可参考该插件的详情页，此处以 「菜单插件」（[@kotori-bot/kotori-plugin-menu](../modules/#@kotori-bot/kotori-plugin-menu)）为例，在详情页查看配置说明后在 `kotori.yml` 中配置相关内容：
 
-```yaml
-plugin:
-  menu:
-    alias: cd
-    keywords: [菜单, 功能, 帮助]
-    content: 菜单 | 小鳥%break%/menu - 查看BOT菜单%break%/hitokoto - 获取一条一言%break%ByHotaru
+```toml
+[plugin.menu]
+alias = "cd"
+keywords = [ "菜单", "功能", "帮助" ]
+content = "菜单 | 小鳥%break%/menu - 查看BOT菜单%break%/hitokoto - 获取一条一言%break%ByHotaru"
 ```
 
 ### 适配器
 
 适配器配置数据应写在 `kotori.yml` 的 `adapter[instanceName]` 项下，其中 `instanceName` 为适配器实例（以下简称「Bot」）名字应由小写英语字母、数字、连字符（\[a-z0-9\]）组成，值必须是一个对象。适配器的配置数据不会作用于适配器模块，Kotori 会根据配置数据创建对应 Bot。对于适配器的配置，必须提供一些必要配置项才能确保实例的正常运行，其中有部分配置项由 Kotori 内部定义，如：
 
-```yaml
-adapter:
-  cmd-test:
-    extends: cmd
-    master: 2333
+```toml
+[adapter.cmd-test]
+extends = "cmd"
+master = 2_333
 ```
 
 「cmd-test」是该 Bot 的名字也是在 kotori 程序运行中的唯一标识符，不可重复。`extends` 用于指定该实例使用的适配器，值为适配器模块的包名除去命名空间与适配器服务前缀的字符串，如：使用「@kotori-bot/kotori-plugin-adapter-qq」适配器，则应填入「qq」。`master` 用于指定该实例的最高管理员（Admin），值类型可为数字或字符串，非必填。
 除去由 Kotori 内部定义的配置项以外，一般还需要填入该适配器要求传入的必要配置项。
 
-```yaml
-adapter:
-  cmd-test:
-    extends: cmd
-    master: 2333
-    nickname: Kotarou
-    age: 18
-    sex: male
-    self-id: 720
+```toml
+[adapter.cmd-test]
+extends = "cmd"
+master = 2_333
+nickname = "Kotarou"
+age = 18
+sex = "male"
+self-id = 720
 ```
 
 > cmd 适配器即「[@kotori-bot/kotori-plugin-adapter-cmd](../modules/#@kotori-bot/kotori-plugin-adapter-cmd)」，属于 kotori 预装模块之一，为 kotori 程序当前所在控制台提供聊天交互功能，也是最方便的测试机器人的场所（但并不推荐，因为只支持文字交互，模块开发有更好的测试场所选择，详细内容请参考 [开发文档 - 项目构建](../guide/start/setup)）
 
 不过此处使用的 cmd 适配器定义的配置项均有默认值因此为可选。接着使用「@kotori-bot/kotori-plugin-adapter-qq」适配器再创建一个 Bot：
 
-```yaml
-adapter:
-  cmd-test:
-    extends: cmd
-    master: 2333
-    nickname: Kotarou
-    age: 18
-    sex: male
-    self-id: 720
+```toml
+[adapter.cmd-test]
+extends = "cmd"
+master = 2_333
+nickname = "Kotarou"
+age = 18
+sex = "male"
+self-id = 720
 
-  kisaki:
-    extends: qq
-    appid: 'xxxx'
-    secret: 'xxxxx'
-    master: 2333
-    retry: 10
+[adapter.kisaki]
+extends = "qq"
+appid = "xxxx"
+secret = "xxxxx"
+master = 2_333
+retry = 10
 ```
 
 查看 QQ 适配器的详情页面可知，`appid` 、 `secret` 为其定义的必要配置项，`retry` 为其定义的可选配置项，关于 QQ 适配器的具体使用与配置项含义请查看其插件详情页。
 
-> 关于 Kotori.yml 的详细介绍请参考 [配置详解](./config)
+> 关于配置文件的详细介绍请参考 [配置详解](./config)

@@ -7,7 +7,7 @@
 
 ## 服务平台
 
-目前共提供 1 个平台、两个 Bot：
+目前共提供 2 个平台、四个 Bot：
 
 ### QQ
 
@@ -15,29 +15,46 @@
 
 #### 小鳥二号
 
-基于 Onebot11 标准的第三方 QQ 机器人（[@Kotori-bot/kotori-plugin-adapter-onebot](../modules/#@kotori-bot/kotori-plugin-adapter-onebot)）。相比于官方 QQ 机器人，第三方 QQ 机器人拥有着更健全的基础功能，权限使用上几乎无任何限制，缺点是因某种原因导致 go-cqhttp 等第三方 QQ 机器人项目跑路或归档，稳定性低于官方机器人。
+基于 OneBot11 标准的第三方 QQ 机器人（[@Kotori-bot/kotori-plugin-adapter-onebot](../modules/#@kotori-bot/kotori-plugin-adapter-onebot)）。
 
 > 立即使用：[Kotori 交流群](https://qm.qq.com/q/Z88lFtJbAk)
 
 #### 小鳥三号
 
-基于 Tencent 官方 API（[@Kotori-bot/kotori-plugin-adapter-qq](../modules/#@kotori-bot/kotori-plugin-adapter-qq)）。相比于第三方 QQ 机器人，限制较多（不可发送主动消息、URL 需备案等），但稳定性较高，其余功能与「小鳥二号」基本一致。
+基于 Tencent 官方 API（[@Kotori-bot/kotori-plugin-adapter-qq](../modules/#@kotori-bot/kotori-plugin-adapter-qq)）。相比于第三方 QQ 机器人，限制较多（不可发送主动消息、URL 需备案等），其余功能与「小鳥二号」基本一致。
+
+> 立即使用：[Kotori 交流群](https://qm.qq.com/q/Z88lFtJbAk)
+
+#### Misakura
+
+基于 OneBot11 标准的第三方 QQ 机器人。
 
 > 立即使用：[Kotori 交流群](https://qm.qq.com/q/Z88lFtJbAk)
 
 ### Telegram
 
+#### Sena
+
+基于 [@kotori-bot/adapter-telegram](../modules/#@kotori-bot/adapter-telegram) 的 Telegram 机器人。
+
+> 立即使用：[@Sena0620Bot](https://t.me/Sena0620Bot)
+
 ### Discord
 
-## Bot 申请
+### Slack
+
+<!-- ## Bot 申请
 
 除了加入官方群或添加 Bot 账户直接使用以外，也可以申请对应平台的 Bot 接入到你自己的群聊。
 
 > 申请链接：[Github Issues](https://github.com/kotorijs/kotori/issue)
 
-请仔细查看说明并填写信息，一般在 24 小时内处理完毕 issue。
+请仔细查看说明并填写信息，一般在 24 小时内处理完毕 issue。 -->
 
 ## 功能一览
+
+> [!WARNING]
+> 以下内容已严重过期
 
 以下展示并非全部功能。
 

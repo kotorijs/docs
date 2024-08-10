@@ -217,7 +217,7 @@ export function main(ctx: Context) {
 
 在入门教程中提到过使用「[@kotori-bot/kotori-plugin-adapter-cmd](../../modules/#@kotori-bot/kotori-plugin-adapter-cmd)」适配器可以在命令行中测试指令，但命令行本身仅支持纯文字交互因此并不友好也不便于开发者调试。同样的，Kotori 已默认安装「[@kotori-bot/kotori-plugin-adapter-sandbox](../../modules/#@kotori-bot/kotori-plugin-adapter-sandbox)」适配器，它提供了一个极为方便、全面的机器人沙盒测试环境，只需在 `kotori.yml` 中设置该适配器即可：
 
-```yaml
+```toml
 adapter:
   developer:
     extends: sandbox

@@ -34,22 +34,28 @@ kotori 是一个**跨平台、解耦合、现代化**于一体的聊天机器人
 
 #### 平台
 
-- QQ（基于 Tencent 官方 API）
-- QQ（基于 Onebot11 标准，适用于 [NapCat](https://github.com/NapNeko/NapCatQQ)、[go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 等项目）
+- QQ（基于腾讯官方接口）
+- QQ（基于 [OneBot11 标准](https://onebot.dev/)，适用于 [NapCat](https://github.com/NapNeko/NapCatQQ)、[go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 等项目）
 - CMD 命令行
+- Slack
+- Telegram
+- Email
+- Discord
+- MinecraftBedrock (基于 WebSocket)
 
 即将支持：
 
-- Telegram
 - Kook/开黑啦
-- MinecraftBedrock（基于 Websocket）
 - WeChat/微信
-- Discord
+- Line
+- What's App
+- DingTalk
 
 #### 数据
 
-- File
-- Sqlite
+- LevelDb
+
+Kotori 使用极为轻量的 LevelDb 作为数据存储。
 
 ## 你是？
 
