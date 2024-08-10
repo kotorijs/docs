@@ -2,7 +2,7 @@
 
 ## 前言
 
-恭喜你，只要学习完本章你将成为一名合格的⌈Kotori Developer⌋！在本章将围绕 Kotori 中最重要的概念⌈上下文⌋为你讲解一系列模块化内容。
+恭喜你，只要学习完本章你将成为一名合格的「Kotori Developer」！在本章将围绕 Kotori 中最重要的概念「上下文」为你讲解一系列模块化内容。
 
 ## package.json 规范
 
@@ -123,7 +123,7 @@ export const config = Tsu.Object({
 
 通过 `config` 变量定义模块的配置项，它是一个 `Tsu.Object()` 实例，并通过 `Tsu.infer<>` 类型推导获取配置项的类型。在模块中编写了配置项后便可直接在 Kotori 根目录的 `kotori.yml` 文件中进行模块配置：
 
-```yaml
+```toml
 # ...
 
 plugin:
@@ -199,7 +199,7 @@ export function main(ctx: Context, cfg: Tsu.infer<typeof config>) {
 
 ### 导出类式
 
-导出式可细分成导出函数式和导出类式（这里的⌈导出⌋特指模块的执行主体），导出函数式相信你已见过太多演示就不再赘述。这里是一个与上面完全一致的导出类式示例：
+导出式可细分成导出函数式和导出类式（这里的「导出」特指模块的执行主体），导出函数式相信你已见过太多演示就不再赘述。这里是一个与上面完全一致的导出类式示例：
 
 ```typescript
 import { Context, Tsu } from 'kotori-bot';
@@ -234,7 +234,7 @@ export class Main {
 
 ### 默认导出
 
-无论是导出函数还是导出类，均将其称之为⌈模块的执行主体⌋，当入口文件中需要导出的只有执行主体本身时，你大可使用默认导出，此时函数名或类名都无关紧要，如：
+无论是导出函数还是导出类，均将其称之为「模块的执行主体」，当入口文件中需要导出的只有执行主体本身时，你大可使用默认导出，此时函数名或类名都无关紧要，如：
 
 ```typescript
 import { Context } from 'kotori-bot';

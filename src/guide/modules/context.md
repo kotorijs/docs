@@ -138,11 +138,11 @@ ctxChild3.root === ctx; // true
 
 ## 事件系统
 
-以上内容均由最初的 `Context` 类定义，通过类原生的继承方式和 `ctx.inject()`、`ctx.mixin()` 等方法对 `Context` 进行装饰或扩展。而在 `Context` 类内部，它本身就已为自己注册并注入了两个实例对象，其一便是事件系统，这也是在第二章中介绍事件系统时说道⌈事件订阅者模式与事件系统共同构成了 Kotori 的基础⌋的原由，只不过 `Context` 类本身并未使用事件系统功能，且仅直接定义了 `ready` 与 `dispose` 事件，两者被作为整个程序生命周期的重要一环，其余事件由另一实例对象（见下文）或 Kotori 核心类定义。
+以上内容均由最初的 `Context` 类定义，通过类原生的继承方式和 `ctx.inject()`、`ctx.mixin()` 等方法对 `Context` 进行装饰或扩展。而在 `Context` 类内部，它本身就已为自己注册并注入了两个实例对象，其一便是事件系统，这也是在第二章中介绍事件系统时说道「事件订阅者模式与事件系统共同构成了 Kotori 的基础」的原由，只不过 `Context` 类本身并未使用事件系统功能，且仅直接定义了 `ready` 与 `dispose` 事件，两者被作为整个程序生命周期的重要一环，其余事件由另一实例对象（见下文）或 Kotori 核心类定义。
 
 ## 插件系统
 
-其二便是插件系统，它定义了 `ready_module` 与 `dispose_module` 事件。在上一节说过⌈在真正学习到上下文之前，可暂且默认插件等同于模块⌋，而现在你将会对⌈插件⌋有更深的认知。
+其二便是插件系统，它定义了 `ready_module` 与 `dispose_module` 事件。在上一节说过「在真正学习到上下文之前，可暂且默认插件等同于模块」，而现在你将会对「插件」有更深的认知。
 
 通过 `ctx.load()` 加载插件并触发 `ready_module` 事件，且 `ready_module` 事件在插件加载完毕后触发。
 
@@ -251,15 +251,15 @@ export function main(ctx: Context) {
   ctx.load({
     name: 'plugin1',
     main: (subCtx: Context) => {
-	    subCtx.logger.debug('will not be loaded');
+     subCtx.logger.debug('will not be loaded');
     },
     Main: class {
-	    constructor(subCtx: Context) {
-		    subCtx.logger.debug('will not be loaded');
-		}
+     constructor(subCtx: Context) {
+      subCtx.logger.debug('will not be loaded');
+  }
     },
     default: (subCtx: Context) => {
-	    subCtx.logger.deug('will be loaded');
+     subCtx.logger.deug('will be loaded');
     }    
   });
 }
@@ -275,16 +275,16 @@ export function main(ctx: Context) {
 */
 
 export async function main(ctx: Context) {
-	// Wrong way of writing
-	ctx.load(require('./plugin.js'));
-	// or:
-	ctx.load(await import('./plugin.ts'));
-	
-	// Correct but not perfect writing
-	const file = `./plugin.${ctx.options.mode === 'dev' ? '.ts' : '.js'}`;
-	ctx.load(require(file));
-	// or:
-	ctx.load(await import(file));	
+ // Wrong way of writing
+ ctx.load(require('./plugin.js'));
+ // or:
+ ctx.load(await import('./plugin.ts'));
+ 
+ // Correct but not perfect writing
+ const file = `./plugin.${ctx.options.mode === 'dev' ? '.ts' : '.js'}`;
+ ctx.load(require(file));
+ // or:
+ ctx.load(await import(file)); 
 }
 ```
 
@@ -305,12 +305,12 @@ import type { Context } from 'kotori-bot';
 import { resolve } from 'node:path';
 
 export function main(ctx: Context) {
-	ctx.load(require(resolve('./plugin')));
-	// Async version which better handled
-	import(resolve('./plugin'))
-	  .then((plugin) => ctx.load(plugin))
-	  .catch((err) => ctx.logger.error('Error in dynamic import plugin!', err));
-	
+ ctx.load(require(resolve('./plugin')));
+ // Async version which better handled
+ import(resolve('./plugin'))
+   .then((plugin) => ctx.load(plugin))
+   .catch((err) => ctx.logger.error('Error in dynamic import plugin!', err));
+ 
 }
 ```
 

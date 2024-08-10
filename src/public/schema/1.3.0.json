@@ -14,14 +14,9 @@
           "maximum": 65525
         },
         "lang": {
-          "enum": [
-            "en_US",
-            "ja_JP",
-            "zh_TW",
-            "zh_CN"
-          ]
+          "enum": ["en_US", "ja_JP", "zh_TW", "zh_CN"]
         },
-        "command-prefix": {
+        "commandPrefix": {
           "type": "string"
         },
         "dirs": {
@@ -52,21 +47,13 @@
               ]
             },
             "lang": {
-              "enum": [
-                "en_US",
-                "ja_JP",
-                "zh_TW",
-                "zh_CN"
-              ]
+              "enum": ["en_US", "ja_JP", "zh_TW", "zh_CN"]
             },
-            "command-prefix": {
+            "commandPrefix": {
               "type": "string"
             }
           },
-          "required": [
-            "extends",
-            "master"
-          ]
+          "required": ["extends", "master"]
         }
       }
     },

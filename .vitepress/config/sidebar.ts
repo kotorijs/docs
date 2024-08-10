@@ -63,5 +63,25 @@ export default {
         { text: '工具类', link: '/guide/extend/tools' }
       ]
     }
+  ],
+  '/advanced/': [
+    { text: '架构', link: '/advanced/architecture' },
+    { text: '氟框架', link: '/advanced/fluoro' },
+    {
+      text: '开发',
+      items: [
+        { text: '单元测试', link: '/advanced/testing' },
+        { text: '作为依赖与二次开发', link: '/advanced/develop' },
+        { text: '在浏览器使用', link: '/advanced/browser' }
+      ]
+    },
+    {
+      text: '关于',
+      items: [
+        { text: '历史', link: '/advanced/history' },
+        { text: '贡献', link: '/advanced/contributing' },
+        { text: '感谢', link: '/advanced/thanks' }
+      ]
+    }
   ]
-};
+}
