@@ -79,6 +79,8 @@ function getNpmData(registry: string, item: ModulesData['list'][number]) {
       RECORD.failed += 1
     })
 }
+
+let KotoriBotLatest: string
 ;(async () => {
   console.time()
   const { meta, list }: ModulesData = JSON.parse(readFileSync(DATA_SET_FILE, 'utf-8'))
@@ -86,6 +88,7 @@ function getNpmData(registry: string, item: ModulesData['list'][number]) {
 
   const requests = list.map((item) => getNpmData(meta.registry, item))
   await Promise.all(requests)
+  KotoriBotLatest = (await (await fetch('https://registry.npmjs.org/kotori-bot')).json())['dist-tags'].latest
 })()
   .catch(console.error)
   .finally(() => {
@@ -95,7 +98,7 @@ function getNpmData(registry: string, item: ModulesData['list'][number]) {
 
     console.timeEnd()
     console.log(`Get ${RECORD.success} success${RECORD.failed > 0 ? `, ${RECORD.failed} failed` : ''}`)
-    const deps: Record<string, string> = {}
+    const deps: Record<string, string> = { 'kotori-bot': `^${KotoriBotLatest}` }
     for (const dep of BASE_DEPS) {
       const result = DATA_DETAILS.list.find((val) => val.name === dep)
       if (result) deps[dep] = `^${result.version}`
