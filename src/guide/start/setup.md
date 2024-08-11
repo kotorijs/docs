@@ -11,7 +11,7 @@
 - 命令语法：`create-kotori <project-name>`
 
 ```bash
-pnpm init kotori@latest my-project
+pnpm create kotori@latest
 ```
 
 除此之外，也可以将其安装在全局使用：
