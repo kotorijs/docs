@@ -1,6 +1,7 @@
 # 配置检测
 
 **配置检测(Schema)** 是 Kotori 中的一个重要概念和功能，其相关的所有实现均来源于 [Tsukiko](https://github.com/biyuehu/tsukiko) 库。Kotori 对 Tsukiko 进行了重新导出，因此可直接在 Kotori 中使用。
+
 ## Tsukiko 简介
 
 **Tsukiko** 是一个基于 TypeScript 开发的运行时下动态类型检查库，最初作为 kotori 开发中的副产物诞生，其作用与应用场景类似于 io-ts 之类的库，常用于 JSON/YAML/TOML 文件数据格式检验、第三方 HTTP API 数据格式检验、数据库返回数据格式检验（尽管此处推荐直接用更为成熟的 ORM 框架）等。
@@ -40,8 +41,7 @@ const value = strSchema.parse(raw)
 
 const result = strSchema.parseSafe(raw)
 if (result.value) {
-
-	console.log('Passed:', result.data)
+   console.log('Passed:', result.data)
 
 } else {
    console.log("Error:", result.error.message)
@@ -116,6 +116,7 @@ strSchema.parse(null) // Error
 - 开关解析器上的某一内部属性（如 `Tsu.String()` 与 `Tsu.Object()` 上均存在的 `.strict()`），这使得可以在调用方法时传入一个 `Boolean` 值 ，一般地，这些方法的参数会有默认值
 - 单向设置解析器上的某一内部属性（如上文的 `schema.optional()`、`schema.empty()`、`schema.default()`），大部分不需要传参，但也有些需要传参
 - 多个同级方法间合并解析器上的多个内部属性（如很多解析器上都存在的 `.min()`、`.max()`、`range()`）
+
 ### 类型导出
 
 [**JSON Schema**](https://json-schema.org/) 是用于验证 JSON 数据结构的强大工具。在必要时可通过 `schema.schema()` 将任意解析器导出成 JSON Schema。不过在此之前，Tsukiko 提供了额外两个关于 JSON Schema 的新方法：
@@ -128,6 +129,7 @@ const config = Tsu.Object({
 ```
 
 `schema.`
+
 ## 解析器
 
 ### 基础类型
@@ -135,6 +137,7 @@ const config = Tsu.Object({
 ### 引用类型
 
 ### 标准类型
+
 ### 高级类型
 
 ## 在 Kotori 中的引用
@@ -142,4 +145,3 @@ const config = Tsu.Object({
 ### 配置文件
 
 ### 数据检验
-

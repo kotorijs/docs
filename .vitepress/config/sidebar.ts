@@ -42,7 +42,9 @@ export default {
         { text: '上下文（Context）', link: '/guide/modules/context' }, // merge with lifecycle
         { text: '配置检测（Schema）', link: '/guide/modules/schema' },
         { text: '国际化（i18n）', link: '/guide/modules/i18n' },
-        { text: '服务依赖（Service）', link: '/guide/modules/service' }
+        { text: '服务依赖（Service）', link: '/guide/modules/service' },
+        { text: '装饰器（Decorator）', link: '/guide/modules/decorator' },
+        { text: '滤器（filter）', link: '/guide/modules/filter' }
       ]
     },
     {
