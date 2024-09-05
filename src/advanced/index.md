@@ -31,10 +31,12 @@ thus build various diversified frameworks and provide strong underlying support.
 **Misakura** is a galgame(Visual novel games) made framework based on tauri, PIXI.js (solid.js) and Fluoro.
 It used Fluoro to implement scripts(lines command) parser.
 
-- [Misakura Docs](https://misakura.js.org)
+- [Misakura Docs](https://avg.js.org)
 
 **MoeHub** is a anime and galgame characters showing system, its backend used Fluoro to implement easy to manage
 database by console interaction.
+
+- [biyuehu/moehub](https://github.com/biyuehu/moehub)
 
 ## License
 
