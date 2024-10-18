@@ -31,7 +31,7 @@ export default {
         { text: '事件系统（Events）', link: '/guide/base/events' },
         { text: '指令注册（Command）', link: '/guide/base/command' },
         { text: '中间件（Middleware）', link: '/guide/base/middleware' },
-        { text: '正则匹配（RegExp）', link: '/guide/base/regexp' }
+        { text: '正则匹配（RegExp）', link: '/guide/base/regexp' },
         { text: '计划任务（Task）', link: '/guide/base/task' }
       ]
     },
@@ -45,7 +45,7 @@ export default {
         { text: '服务依赖（Service）', link: '/guide/modules/service' },
         { text: '滤器（Filter）', link: '/guide/modules/filter' },
         { text: '装饰器（Decorator）', link: '/guide/modules/decorator' },
-        { text: '使用 ReScript 开发', link: '/guide/modules/rescript' },
+        { text: '使用 ReScript 开发', link: '/guide/modules/rescript' }
       ]
     },
     {
