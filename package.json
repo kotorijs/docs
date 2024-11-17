@@ -15,6 +15,9 @@
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@types/node": "^20.14.2",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "shiki": "^1.23.0",
     "vitepress": "latest",
     "vue": "^3.4.18"
   }
