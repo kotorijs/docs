@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Kotori docs",
   "author": "Hotaru",
-  "license": "MIT",
+  "license": "BCU",
   "scripts": {
     "dev": "vitepress dev",
     "build:only": "vitepress build",

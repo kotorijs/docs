@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitepress';
-import navbar from './config/navbar';
-import sidebar from './config/sidebar';
+import { defineConfig } from 'vitepress'
+import navbar from './config/navbar'
+import sidebar from './config/sidebar'
 import rescript from './textmate/rescript.json'
 
 export default defineConfig({
@@ -25,10 +25,11 @@ export default defineConfig({
     sidebar: sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/kotorijs/kotori' }],
     footer: {
-      copyright: '<a>BCU Licensed</a> | Copyright © 2023 - 2024 Hotaru'
+      copyright:
+        '<a target="_blank" href="https://github.com/BIYUEHU/ban-chinaman-using/blob/main/LICENSE.md">BCU Licensed</a> | Copyright © 2023 - 2024 Hotaru'
     },
     editLink: {
-      pattern: 'https://github.com/kotorijs/docs/edit/master/src/:path',
+      pattern: 'https://github.com/kotorijs/docs/edit/master/src/:path'
       // text: '在 Github 上编辑此页面'
     },
     lastUpdated: {
@@ -37,7 +38,7 @@ export default defineConfig({
         dateStyle: 'full',
         timeStyle: 'medium'
       }
-    },
+    }
     // docFooter: {
     //   prev: '上一页',
     //   next: '下一页'
@@ -55,13 +56,13 @@ export default defineConfig({
   markdown: {
     theme: {
       light: 'vitesse-light',
-      dark: 'vitesse-dark',
+      dark: 'vitesse-dark'
     },
     languages: [
       {
-        ...rescript as any,
-        aliases: ['rescript','res'],
+        ...(rescript as any),
+        aliases: ['rescript', 'res']
       }
-    ],
-}
-});
+    ]
+  }
+})
