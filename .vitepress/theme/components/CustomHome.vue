@@ -340,7 +340,7 @@
 
 /* New Carousel Styles */
 .carousel-section {
-  padding: 2rem 2rem;
+  padding: 2rem 2rem 0 2rem;
   margin: 0 auto;
 }
 
