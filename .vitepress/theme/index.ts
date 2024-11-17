@@ -1,16 +1,16 @@
 // https://vitepress.dev/guide/custom-theme
 import { h } from 'vue';
-import Theme from 'vitepress/theme';
+import DefaultTheme from 'vitepress/theme';
 import './style.css';
+import CustomHome from './components/CustomHome.vue';
+import type { Theme } from 'vitepress';
+// import './custom.scss'
 
-export default {
-  extends: Theme,
-  Layout: () => {
-    return h(Theme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    });
-  },
+const theme: Theme= {
+  ...DefaultTheme,
   enhanceApp({ app, router, siteData }) {
-    // ...
+    app.component('CustomHome', CustomHome);
   }
 };
+
+export default theme;

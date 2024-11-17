@@ -1,67 +1,63 @@
+:root {
+  /* 主色调定义 */
+  --deep-dark-blue: #4ca5ee;
+  --deep-dark-blue-light: #40d1d6;
+  --fresh-green: #46b983;
+  --fresh-green-light: #28d4a3;
+  --vivid-red: #f44336;
+  --vivid-red-light: #e57373;
 
- :root {
-  --vp-c-default-1: var(--vp-c-gray-1);
-  --vp-c-default-2: var(--vp-c-gray-2);
-  --vp-c-default-3: var(--vp-c-gray-3);
-  --vp-c-default-soft: var(--vp-c-gray-soft);
+  /* 自定义渐变 */
+  --gradient-brand: linear-gradient(120deg, var(--deep-dark-blue-light) 0%, var(--fresh-green-light) 100%);
+  --gradient-hero: linear-gradient(-45deg, var(--vivid-red) 30%, var(--deep-dark-blue) 70%);
 
-  --vp-c-brand-1: var(--vp-c-indigo-1);
-  --vp-c-brand-2: var(--vp-c-indigo-2);
-  --vp-c-brand-3: var(--vp-c-indigo-3);
-  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+  /* 基础色调覆盖 */
+  --vp-c-brand-1: var(--deep-dark-blue);
+  --vp-c-brand-2: var(--deep-dark-blue-light);
+  --vp-c-brand-3: var(--fresh-green);
+  --vp-c-brand-soft: rgba(26, 35, 126, 0.14);
 
-  --vp-c-tip-1: var(--vp-c-brand-1);
-  --vp-c-tip-2: var(--vp-c-brand-2);
-  --vp-c-tip-3: var(--vp-c-brand-3);
-  --vp-c-tip-soft: var(--vp-c-brand-soft);
+  /* 提示框颜色 */
+  --vp-c-tip-1: var(--fresh-green);
+  --vp-c-tip-2: var(--fresh-green-light);
+  --vp-c-tip-3: var(--deep-dark-blue);
+  --vp-c-tip-soft: rgba(76, 175, 80, 0.14);
 
-  --vp-c-warning-1: var(--vp-c-yellow-1);
-  --vp-c-warning-2: var(--vp-c-yellow-2);
-  --vp-c-warning-3: var(--vp-c-yellow-3);
-  --vp-c-warning-soft: var(--vp-c-yellow-soft);
+  /* 警告颜色 */
+  --vp-c-warning-1: #ff9800;
+  --vp-c-warning-2: #ffa726;
+  --vp-c-warning-3: #ffb74d;
+  --vp-c-warning-soft: rgba(255, 152, 0, 0.14);
 
-  --vp-c-danger-1: var(--vp-c-red-1);
-  --vp-c-danger-2: var(--vp-c-red-2);
-  --vp-c-danger-3: var(--vp-c-red-3);
-  --vp-c-danger-soft: var(--vp-c-red-soft);
+  /* 危险颜色 */
+  --vp-c-danger-1: var(--vivid-red);
+  --vp-c-danger-2: var(--vivid-red-light);
+  --vp-c-danger-3: #ef9a9a;
+  --vp-c-danger-soft: rgba(244, 67, 54, 0.14);
 }
 
-/**
- * Component: Button
- * -------------------------------------------------------------------------- */
-
+/* 按钮样式优化 */
 :root {
   --vp-button-brand-border: transparent;
   --vp-button-brand-text: var(--vp-c-white);
-  --vp-button-brand-bg: var(--vp-c-brand-3);
+  --vp-button-brand-bg: var(--deep-dark-blue);
   --vp-button-brand-hover-border: transparent;
   --vp-button-brand-hover-text: var(--vp-c-white);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-hover-bg: var(--deep-dark-blue-light);
   --vp-button-brand-active-border: transparent;
   --vp-button-brand-active-text: var(--vp-c-white);
-  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+  --vp-button-brand-active-bg: var(--fresh-green);
 }
 
-/**
- * Component: Home
- * -------------------------------------------------------------------------- */
-
-:root {
+/* 首页样式优化 */
+/* :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #bd34fe 30%,
-    #41d1ff
-  );
-
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #bd34fe 50%,
-    #47caff 50%
-  );
+  --vp-home-hero-name-background: var(--gradient-brand);
+  --vp-home-hero-image-background-image: var(--gradient-hero);
   --vp-home-hero-image-filter: blur(40px);
-}
+} */
 
+/* 响应式模糊效果 */
 @media (min-width: 640px) {
   :root {
     --vp-home-hero-image-filter: blur(56px);
@@ -74,10 +70,7 @@
   }
 }
 
-/**
- * Component: Custom Block
- * -------------------------------------------------------------------------- */
-
+/* 自定义块样式 */
 :root {
   --vp-custom-block-tip-border: transparent;
   --vp-custom-block-tip-text: var(--vp-c-text-1);
@@ -85,21 +78,80 @@
   --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
 }
 
-/**
- * Component: Algolia
- * -------------------------------------------------------------------------- */
-
+/* Algolia 搜索框样式 */
 .DocSearch {
-  --docsearch-primary-color: var(--vp-c-brand-1) !important;
+  --docsearch-primary-color: var(--deep-dark-blue) !important;
 }
 
+/* 增加现代化设计元素 */
 
-/* .vitepress/theme/custom.css
-:root {
-	--vp-c-brand: #df5d64;
-	--vp-c-brand-dark: #d4454d;
-  --vp-c-brand-darker: #d4454d;
-  --vp-c-brand-light: #df5d64b8;
-  --vp-c-brand-lighter: #df5d64b8;
+/* 链接悬停效果 */
+.vp-doc a:hover {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
 
-} */
+/* 代码块样式优化 */
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 标题样式优化 */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4 {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--deep-dark-blue-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--deep-dark-blue);
+}
+
+/* 导航栏活跃项样式 */
+.nav-bar .nav-links .nav-item.active a {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+/* 侧边栏优化 */
+.sidebar {
+  border-right: 1px solid rgba(60, 60, 60, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+/* 卡片样式 */
+.vp-doc .custom-block {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vp-doc .custom-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

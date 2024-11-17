@@ -9,7 +9,7 @@
 
 Kotori 从 v1.7 开始支持用 ReScript 编写插件，尽管这并非强制性，但如若你对函数式编程感兴趣或者对安全性有要求，那么使用 ReScript 编写 Kotori 插件将是不二之举。
 
-```rescript
+```res
 let main = (ctx: Kotori.context) => {
    open Kotori.Utils;
 
