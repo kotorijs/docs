@@ -10,7 +10,7 @@
 
 ## 构建产物
 
-「构建产物」在 JavaScript 生态中指将源码（Kotori 模块开发中一般为 TypeScript 文件）进行处理以适用于生产环境中（处理过程一般有 TypeScript 转为 JavaScript、向下兼容语法、压缩代码等）。JavaScript 生态中构建工具非常多，你可以选择喜欢的构建工具并自习配置，当然如果你对此并不了解也可以使用 Kotori 默认的构建方式（通过TypeScript 自带的 tsc 程序），在你的模块根目录中输入以下指令：
+「构建产物」在 JavaScript 生态中指将源码（Kotori 模块开发中一般为 TypeScript 文件）进行处理以适用于生产环境中（处理过程一般有 TypeScript 转为 JavaScript、向下兼容语法、压缩代码等）。JavaScript 生态中构建工具非常多，你可以选择喜欢的构建工具并自习配置，当然如果你对此并不了解也可以使用 Kotori 默认的构建方式（通过 TypeScript 自带的 tsc 程序），在你的模块根目录中输入以下指令：
 
 ```bash
 pnpm build
@@ -132,26 +132,7 @@ git push --tags
 
 ## 收录至模块市场
 
-前往 [Kotori Docs](https://github.com/kotorijs/docs) 仓库将其 fork 到你的账号名下，修改 fork 的仓库中的 `src/public/data.json` 文件，在该文件中追加你的模块的包名与描述：
-
-```json
-{
-  // ...
-  {
-    "name": "kotori-plugin-my-project",
-    "description": "这是一个"
-  }
-  // ...
-}
-```
-
-- `name` 务必与发布到 npm 的包名一致
-- 请按照包名的字母依次排序，如若有命名空间（@xxxx/）请提到最前，并根据包命名空间、包名的字母依次排序
-- `description` 不应过长，但需大致概括模块内容
-- 请注意 JSON 格式规范
-
-完成文件更改后向源仓库发起 pull request 等待审定。所有新的 pull request 一般会在十二小时内审定完毕，当上述注意事项均无误时将会被合并到源仓库，届时你可在 [Kotori 模块中心](https://kotori.js.org/modules/) 查看你的模块。
-
+模块市场是 Kotori 官方维护的模块仓库，目前通过自动化流程从 npm 上查找所有符合条件的包，只要你的包符合规范并发布到 npm，将会在半小时内自动同步到模块市场。
 
 ## 放在最后
 
