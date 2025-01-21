@@ -8,12 +8,13 @@
   "scripts": {
     "dev": "vitepress dev",
     "build:only": "vitepress build",
-    "build": "pnpm revision && vitepress build",
+    "build": "pnpm pick && vitepress build",
     "preview": "vitepress preview",
-    "revision": "pnpx tsx scripts/revision"
+    "pick": "pnpx tsx scripts/pick"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
+    "@kotori-bot/loader": "^1.8.0",
     "@types/node": "^20.14.2",
     "sass": "^1.81.0",
     "sass-loader": "^16.0.3",
