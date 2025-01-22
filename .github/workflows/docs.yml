@@ -47,5 +47,5 @@ jobs:
           build_dir: .vitepress/dist
           fqdn: https://kotori.js.org
         env:
-          GITHUB_TOKEN: ${{ secrets.deploy-kotori-docs }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
