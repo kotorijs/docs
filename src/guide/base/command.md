@@ -136,7 +136,7 @@ export declare enum UserAccess {
 
 ### 重要属性
 
-> 具体内容参考 [接口文档](../api/)
+> 具体内容参考 [接口文档](../../api/)
 
 `session` 对象本质上就是一个事件数据对象（即会话事件），上述是会话事件的共有属性，不同会话事件中有着不同的额外属性，如 `EventDataGroupMsg` 事件有 `messageId`、`sender`、`message`、`groupId`，而 `EventDataPrivateMsg` 事件没有 `groupId`，`EventDataPrivateRecall` 事件其中的仅有 `messageId`，这些额外属性均不在当前讨论范围内，具体内容参考接口文档。对于上述的共有属性在当前阶段也不必全部掌握。
 
