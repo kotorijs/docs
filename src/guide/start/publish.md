@@ -18,16 +18,7 @@ pnpm build
 
 一般地，你将会发现在模块根目录出现了一个 `lib` 文件夹，这在上一节已有提到，它是构建产物的输出目录，有必要的话可在 `tsconfig.json` 文件中更改：
 
-```json
-{
-  // ...
-  "compilerOptions": {
-    "rootDir": "./src", // 输入目录
-    "outDir": "./lib" // 输出目录
-    // ...
-  }
-}
-```
+<<< @/demo/modules/my-project/tsconfig.json
 
 > 关于 `tsconfig.json` 的更多内容：[TypeScript Documentation](https://www.typescriptlang.org/zh/docs/handbook/tsconfig-json.html)
 
@@ -54,11 +45,7 @@ tsconfig.json
 
 在上一节的 `package.json` 示例中会发现有一个以字符串数组为值的 `files` 配置项，其用于指定在使用 `publish` 时需要附带的文件与文件夹。
 
-```typescript
-{
-  "files": ["lib", "LICENSE", "README.md"],
-}
-```
+<<< @/demo/modules/my-project/package.json{12-17}
 
 `files` 配置项优先级高于 `.npmignore`，其直接写在 `package.json` 中显得十分简洁也会减少整个模块目录的文件冗余。
 
@@ -66,22 +53,7 @@ tsconfig.json
 
 不同于前两者，`.gitignore` 用于指定在使用 Git 进行版本控制时需要忽略的文件，语法与 `.npmignore` 类似，同样位于模块根目录：
 
-```ini
-node_modules
-dist
-lib
-.husky/_
-
-.vscode/*
-.vs/*
-!.vscode/extensions.json
-
-*.tgz
-tsconfig.tsbuildinfo
-*.log
-
-kotori.dev.yml
-```
+<<< @/demo/.gitignore
 
 ## 发布构建产物
 

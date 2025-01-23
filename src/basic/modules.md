@@ -60,7 +60,6 @@ npm install @kotori-bot/kotori-plugin-adapter-qq
 dirs = [
   "./node_modules/",
   "./node_modules/@kotori-bot/",
-  # 上面为默认配置的加载目录
   "./node_modules/@custom-scope/",
   "- ./test_modules"
 ]

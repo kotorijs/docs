@@ -4,21 +4,7 @@
 
 在上一节中学习了事件系统的使用，现在通过 `on_message` 事件实现一个小功能:
 
-```typescript
-ctx.on('on_message', (session) => {
-  if (!session.message.startsWith('/')) return;
-  const command = session.message.slice(1);
-
-  if (command === 'echo') {
-    const content = command.slice(5);
-    session.send(content ? content : '输入内容为空');
-  } else if (command === 'time') {
-    session.send(`现在的时间是 ${new Date().getTime()}`);
-  } else {
-    session.send('未知的指令');
-  }
-});
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c1
 
 当收到「/echo xxx」消息时将发送「xxx」;当收到「/time」消息时将发送当前时间戳;两者都不是时发送「未知的指令」。然而当结果越来越多后，`if...else` 语句也会越来越多，显然，这是十分糟糕的。尽管可以考虑将条件内容作为键、结果处理包装成回调函数作为值，以键值对形式装进一个对象或者 Map 中，然后遍历执行。但是当条件越来越复杂时，字符串的键远无法满足需求，同时也可能有相当一部分内容仅在私聊或者群聊下可用，其次，参数的处理也需要在结果处理内部中完成，这是十分复杂与繁琐的，因此便有入了本节内容。
 
@@ -26,23 +12,11 @@ ctx.on('on_message', (session) => {
 
 **指令(Command)** 是 Kotori 的核心功能，也是最常见的交互方式，指令实质是 Kotori 内部对 `on_message` 事件的再处理与封装，这点与后续将学习的中间件和正则匹配是一致的，因此也可以看作是一个事件处理的语法糖。通过 `ctx.command()` 可注册一条指令，参数为指令模板字符，返回 `Command` 实例对象，实例上有着若干方法用于装饰该指令，其返回值同样为当前指令的实例对象。
 
-```typescript
-ctx.command('echo <...content>').action((data) => data.args.join(' '));
-
-ctx.command('time').action(() => {
-  const time = new Date().getTime();
-  return time;
-});
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c2
 
 ### 指令模板字符
 
-```typescript
-ctx.command('bar');
-ctx.command('car <arg1> <arg2>');
-ctx.command('dar <arg1> [arg2] [arg3=value]');
-ctx.command('ear [arg1:number=1] [...args:string] - 指令描述');
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c3
 
 上述演示了指令模板字符的基本格式。
 
@@ -61,13 +35,7 @@ ctx.command('ear [arg1:number=1] [...args:string] - 指令描述');
 1. 该选项的缩写名
 2. 选项模板字符，可设置多个指令选项
 
-```typescript
-ctx
-  .command('bar')
-  .option('S', 'speaker - 这是选项的描述')
-  .option('G', 'global:boolean - 这是一个布尔类型的选项')
-  .option('T', 'time:number - 这是一个数字类型的选项');
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c4
 
 - 一般地，使用单个大写字母作为缩写名，解析器将把字符串中单个连接符 `-` 开头内容作为选项缩写名解析
 - 使用多个小写字母作为全名（多个单词使用 单个连接符 `-` 解析），解析器将把字符串中两个连接符 `--` 开头的内容作为选项全名解析
@@ -84,178 +52,83 @@ ctx
 
 > `options` 中的键为对应选项的全名而非缩写名。
 
-```typescript
-ctx.command('bar <...args>').action((data) => {
-  ctx.logger.info(data.args); // 输出参数值数组
-  ctx.logger.info(data.options); // 输出选项值对象
-  session.send('这是一条消息');
-});
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c5
 
 回调函数中的第二个参数为当前会话事件数据 `session`。`session` 对象包含了当前指令触发产生的所有上下文信息，比如消息 id、消息类型、触发指令的账号、Bot 实例等，在处理函数中可以方便地与 Bot 进行交互。还可以从 `session` 中获取诸如发送消息等实用工具函数。下文将详细讲解 `session` 对象相关内容，此处仅做演示。
 
-```typescript
-ctx.command('at').action((_, session) => {
-  session.send(`你好，${session.el.at(session.userId)}，你的名字是 ${session.sender.nickname}`);
-});
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c6
 
 ### 作用域
 
 通过 `Command.scope()` 设置指令作用域，值类型为 `MessageScope`，如若不设置则默认所有场景均可使用。
 
 ```typescript
-export enum MessageScope {
-  PRIVATE, // 私聊
-  GROUP // 群聊
+/** Message scope (session type) */
+export declare enum MessageScope {
+    /** Private message */
+    PRIVATE = 0,
+    /** Group message */
+    GROUP = 1,
+    /** Channel message */
+    CHANNEL = 2
 }
 ```
 
-```typescript
-ctx
-  .command('test')
-  .scope(MessageScope.PRIVATE)
-  .action(() => '这是一条仅私聊可用的消息');
-
-ctx
-  .command('hello')
-  .scope(MessageScope.GROUP)
-  .action((_, session) => {
-    session.send(`这是一条仅群聊可用的消息`);
-  });
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c7
 
 ### 别名
 
 通过 `Command.alias()` 设置指令别名，参数为 `string | string[]`。
 
-```typescript
-ctx
-  .command('original')
-  .alias('o') // 别名可以是单个字符串
-  .alias(['ori', 'org']) // 也可以是字符串数组
-  .action(() => '这是原版指令');
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c8
 
 ### 权限
 
 通过 `Command.access()` 设置指令权限，值类型为 `CommandAccess`。
 
 ```typescript
-export const enum CommandAccess {
-  MEMBER, // 所有成员可用，默认值，权限最低
-  MANGER, // 管理员（群管理员/群主或 Bot 管理员）及以上权限可用
-  ADMIN // 仅该 Bot 最高管理员可用
+/** User access */
+export declare enum UserAccess {
+    /** Normal member */
+    MEMBER = 0,
+    /** Manager (group owner and group mangers) */
+    MANGER = 1,
+    /** Admin (master of bot instance) */
+    ADMIN = 2
 }
 ```
 
 > `CommandAccess.ADMIN` 对应 `kotori.yml` 中的 `AdapterConfig.master` 选项
 
-```typescript
-ctx
-  .command('op')
-  .access(CommandAccess.ADMIN)
-  .action(() => '这是一条特殊指令');
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c9
 
 ### 帮助信息
 
 通过 `Command.help()` 设置指令帮助信息，相对于指令模板字符中的指令描述，其提供更为详尽全面的信息。
 
-```typescript
-ctx.command('bar').help('这里是指令的帮助信息');
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c10
 
 ## 返回值处理
 
 在上述众多演示中，可能你已注意到，与事件系统不同，指令的回调函数可以直接返回一个值作为消息发出，而不必使用 `session.send()` 方法。其本质上是自动将回调函数返回值作为参数传入 `session.quick()` 方法，具体处理逻辑请参考下文。
 
-```typescript
-ctx.command('concat <str1> <str2>').action(({ args: [str1, str2] }) => str1 + str2);
+<<< @/demo/modules/my-project/src/base-command.tsx#c11
 
-ctx.command('render').action(() => ['template.text', { content: '这是模板内容' }]);
-
-ctx.command('fetch').action(async () => {
-  const res = await ctx.http.get('https://api.example.com');
-  return ['template.status', { status: res.status }];
-});
-```
-
-> 对于返回数组的情况设计国际化相关内容，将在第三章中讲解
+> 部分内容涉及到国际化相关内容，将在第三章中讲解
 
 ## 子指令
 
 试想一下，有一个指令 `list` 有着多个操作，如查询、添加、删除列表等，大可以使用多个完全独立的指令如 `list_query`、`list_add`、`list_remove`，但这并不优雅。此处通过注册一个指令并判断其第一个参数的值执行相应操作
 
-```typescript
-/* 错误示例不要抄 */
-ctx.command('black query - manger.descr.black.query').action(({ args }, session) => {
-  switch (args[0]) {
-    case 'query':
-      /* ... */
-      break;
-    case 'add':
-      /* ... */
-      break;
-    case 'remove':
-      /* ... */
-      break;
-    default:
-      return `无效的参数 ${args[0]}`;
-  }
-  /* ... */
-});
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c12
 
 但是，其需要判断 `args[0]` 并处理无效时的情况，额外的代码嵌套依旧不够优雅。且多个操作下对于参数个数要求不一，如查询可以直接输入 `list query`，但对于添加/删除往往需要在后方再传入一个参数以指定添加/删除目标 `list add xxx`。因此，当同一指令有多个操作（即多个指令回调函数）且各个操作间相对独立时可使用子指令。基础用法：
 
-```typescript
-ctx.command('cmd sub1').action(() => '操作1');
-ctx.command('cmd sub2').action(() => '操作2');
-
-// 甚至可以支持嵌套子指令...
-ctx.command('cmd sub3 sub1').action(() => '操作3的操作1');
-ctx.command('cmd sub3 sub2').action(() => '操作3的第二个操作');
-
-// 多个不同子指令间可设置不同的权限、作用域等，互不影响
-ctx
-  .command('cmd sub4 group')
-  .action(() => '这个子指令仅群聊可用')
-  .scope(MessageScope.GROUP);
-
-ctx
-  .command('cmd sub4 manger')
-  .action(() => '这个子指令仅管理员可用')
-  .access(CommandAccess.MANGER);
-
-  ctx
-  .command('cmd sub4 ADMIN_private')
-  .action(() => '这个子指令仅最高管理员且在私聊下可用')
-  .access(CommandAccess.ADMIN),
-  .scope(MessageScope.PRIVATE);
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c13
 
 使用子指令实现 `list` 指令：
 
-```typescript
-ctx.command('list query - 查询列表').action(() => {
-  /* ... */
-});
-
-ctx
-  .command('list add <target> - 从列表中添加指定目标')
-  .action(() => {
-    /* ... */
-  })
-  .access(CommandAccess.MANGER);
-
-ctx
-  .command('list remove <target> - 从列表中删除指定目标')
-  .action(() => {
-    /* ... */
-  })
-  .access(CommandAccess.MANGER);
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c14
 
 ## 会话事件数据
 
@@ -263,30 +136,7 @@ ctx
 
 ### 重要属性
 
-```typescript
-export interface EventDataApiBase {
-  type?: MessageScope;
-  api: Api;
-  el: Elements;
-  userId: EventDataTargetId;
-  groupId?: EventDataTargetId;
-  operatorId?: EventDataTargetId;
-  i18n: I18n;
-  send(message: MessageRaw): void;
-  format(template: string, data: Record<string, unknown> | CommandArgType[]): string;
-  quick(message: MessageQuick): void;
-  prompt(message?: MessageRaw): Promise<MessageRaw>;
-  confirm(options?: { message: MessageRaw; sure: MessageRaw }): Promise<boolean>;
-  error<T extends Exclude<keyof CommandResult, CommandResultNoArgs>>(
-    type: T,
-    data: CommandResult[T] extends object ? CommandResult[T] : never
-  ): CommandError;
-  error<T extends CommandResultNoArgs>(type: T): CommandError;
-  extra?: unknown;
-}
-```
-
-<!-- TODO: here api reference link -->
+> 具体内容参考 [接口文档](/api)
 
 `session` 对象本质上就是一个事件数据对象（即会话事件），上述是会话事件的共有属性，不同会话事件中有着不同的额外属性，如 `EventDataGroupMsg` 事件有 `messageId`、`sender`、`message`、`groupId`，而 `EventDataPrivateMsg` 事件没有 `groupId`，`EventDataPrivateRecall` 事件其中的仅有 `messageId`，这些额外属性均不在当前讨论范围内，具体内容参考接口文档。对于上述的共有属性在当前阶段也不必全部掌握。
 
@@ -307,18 +157,7 @@ type ArrayArgs = CommandArgType[];
 1. 源字符串
 2. 模板字符串参数，其类型有两种，分别为 `ObjectArgs`、`ArrayArgs`。
 
-```typescript
-ctx.command('himeki').action((_, { format }) => {
-  format('名字：%name%\n身高：%height%cm\n口头禅：%msg%', {
-    name: 'Ichinose Himeki',
-    height: 153,
-    msg: '最喜欢你了，欧尼酱'
-  });
-  // 等同于：
-  format('名字：{0}\n身高：{1}cm\n口头禅：{2}', ['Ichinose Himeki', 153, '最喜欢你了，欧尼酱']);
-  // 最终输出：名字：Ichinose Himeki\n年龄：153\n口头禅：最喜欢你了，欧尼酱
-});
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c15
 
 通过上述代码可知：
 
@@ -326,6 +165,10 @@ ctx.command('himeki').action((_, { format }) => {
 - 数组模板：通过 `{index}` 的形式进行替换，与数组索引一一对应，缺少语义性但更简洁，适合短文本使用，不易造成代码冗余
 - 模板字符串替换适合动态获取数据后呈现数据
 - 适当的对模板字符串参数嵌套使用 `session.format()` 可实现较为复杂的动态数据展示，但不宜过多
+
+一般地更推荐后者，并且在有 JSX 语法糖加持的情况下，数组模板替换可以使用 `<format />` 实现：
+
+<<< @/demo/modules/my-project/src/base-command.tsx#c16
 
 ### 消息发送
 

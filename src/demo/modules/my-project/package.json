@@ -1,0 +1,22 @@
+{
+  "name": "kotori-plugin-my-project",
+  "version": "1.0.0",
+  "description": "a kotori project kotori project",
+  "main": "lib/index.js",
+  "keywords": [
+    "kotori",
+    "chatbot",
+    "kotori-plugin"
+  ],
+  "license": "BAN-ZHINESE-USING",
+  "files": [
+    "lib",
+    "locales",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": "Himeno",
+  "peerDependencies": {
+    "kotori-bot": "^1.7.1"
+  }
+}
