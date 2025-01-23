@@ -60,6 +60,7 @@ export default defineConfig({
     },
     languages: [
       {
+        // biome-ignore lint:
         ...(rescript as any),
         aliases: ['rescript', 'res']
       }
