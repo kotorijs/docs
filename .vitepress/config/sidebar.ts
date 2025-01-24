@@ -42,7 +42,7 @@ export default {
         { text: '上下文（Context）', link: '/guide/modules/context' }, // merge with lifecycle
         { text: '配置检测（Schema）', link: '/guide/modules/schema' },
         { text: '国际化（i18n）', link: '/guide/modules/i18n' },
-        { text: '服务依赖（Service）', link: '/guide/modules/service' },
+        { text: '依赖与服务（Service）', link: '/guide/modules/service' },
         { text: '滤器（Filter）', link: '/guide/modules/filter' },
         { text: '装饰器（Decorator）', link: '/guide/modules/decorator' },
         { text: '使用 ReScript 开发', link: '/guide/modules/rescript' }
@@ -51,19 +51,23 @@ export default {
     {
       text: '组件化',
       items: [
-        { text: '实现元素类（Elements）', link: '/guide/adapter/elements' },
-        { text: '实现接口类（Api）', link: '/guide/adapter/api' },
-        { text: '实现适配器类（Adapter）', link: '/guide/adapter/adapter' },
-        { text: '自定义服务（Service）', link: '/guide/adapter/custom' }
+        { text: '实现元素类（Elements）', link: '/guide/components/elements' },
+        { text: '实现接口类（Api）', link: '/guide/components/api' },
+        { text: '实现适配器类（Adapter）', link: '/guide/components/adapter' },
+        { text: '自定义服务（Service）', link: '/guide/components/custom' }
       ]
     },
     {
       text: '扩展功能',
       items: [
-        // { text: '滤器', link: '/guide/extend/filter' },
-        // { text: '数据库', link: '/guide/extend/database' },
-        // { text: '日志打印', link: '/guide/extend/logger' },
-        { text: '工具类', link: '/guide/extend/tools' }
+        { text: '网络请求（Http）', link: '/guide/extend/http' },
+        { text: '日志打印（Logger）', link: '/guide/extend/logger' },
+        { text: '文件操作（File）', link: '/guide/modules/service.html#文件服务-file' },
+        { text: '缓存（Cache）', link: '/guide/modules/service.html#缓存服务-cache' },
+        { text: '数据库（Database）', link: '/guide/modules/service.html#数据库服务-database' },
+        { text: '浏览器（Browser）', link: '/guide/modules/service.html#浏览器服务-browser' },
+        { text: 'Rss 订阅（Rss）', link: '/guide/modules/service.html#rss-服务' },
+        { text: '工具类（Tools）', link: '/guide/extend/tools' }
       ]
     }
   ],

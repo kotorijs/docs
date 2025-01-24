@@ -98,7 +98,7 @@ export declare enum UserAccess {
 }
 ```
 
-> `CommandAccess.ADMIN` 对应 `kotori.yml` 中的 `AdapterConfig.master` 选项
+> `CommandAccess.ADMIN` 对应 `kotori.toml` 中的 `AdapterConfig.master` 选项
 
 <<< @/demo/modules/my-project/src/base-command.tsx#c9
 
@@ -190,43 +190,13 @@ type ArrayArgs = CommandArgType[];
 }
 ```
 
-```typescript
-// src/index.ts
-// 告诉 Kotori 自动加载国际化文件
-export const lang = [__dirname, '../locales'];
-
-export function (ctx: Context) {
-  ctx.command('himeki').action((_, session) => {
-    // 使用 session.send()：
-    const hitokoto = session.i18n.locale('test.msg.himeki.hitokoto');
-    const msg = session.format(session.i18n.locale('test.msg.himeki'), ['Ichinose Himeki', 153, hitokoto]);
-    session.send(msg);
-    // 使用 session.quick()：
-    session.quick(['test.msg.himeki', ['Ichinose Himeki', 153, 'test.msg.himeki.hitokoto']]);
-    // 直接返回：
-    return ['test.msg.himeki', ['Ichinose Himeki', 153, 'test.msg.himeki.hitokoto']];
-  });
-}
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c17
 
 ### 会话交互
 
 目前 Kotori 原生提供了两个会话交互方法：`session.prompt()` 与 `session.confirm()`，它们和浏览器中的 `prompt()` 与 `confirm()` 类似，分别对应为输入框和提示框。
 
-```typescript
-ctx.command('question').action(async (_, session) => {
-  await session.quick('这里有一个问题想问你...');
-  const likeme = await session.confirm({
-    message: '你喜欢我吗?',
-    sure: '喜欢'
-  });
-  if (!likeme) return '伤透了我的心';
-  const ago = Number(await session.prompt('喜欢我多久了?'));
-  if (Number.isNaN(ago) || ago < 0) return '这可不是一个有效的Number啊！';
-  await session.quick(ago >= 0 && ago <= 1 ? '什么嘛...原来才刚刚开始喜欢啊' : `居然喜欢了 ${ago} 这么久啊！`);
-  return '谢谢你的喜欢哦~';
-});
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c18
 
 > [!WARNING]
 > 一次性有多个会话交互（消息、输入、确认...）时请注意不用遗漏 `await` 关键词，否则可能会有一些意料之外的效果。
@@ -282,19 +252,8 @@ Kotori 中指令指令错误分为两大类：
 
 使用 `session.error()` 方法即可在运行时阶段抛出错误，
 
-```typescript
-export function main(ctx: Context) {
-  ctx.command('hitokoto').action(async (_, session) => {
-    const res = await ctx.http.get('https://hotaru.icu/api/hitokoto/v2/');
-    /* 这里有一些检查数据的操作 */
-    if (condition) return session.error('res', { error: new Error() }); // 这里会有些小问题，代码仅做演示，请勿照抄
-    return ['今日一言: {0}{1}', [res.data, res.data.from ? `——${res.data.from}` : '']];
-  });
-}
-```
+<<< @/demo/modules/my-project/src/base-command.tsx#c19
 
 上述代码展示了其非常经典的一个例子，机器人的功能往往部分来自于网络接口请求，确保其第三方内容的稳定性更是必要的，因此对获取的数据进行检查，然后再进行访问属性操作，如若获取的数据与预期不一致则使用 `session.error()` 抛出错误
 
-<!-- TODO: here api reference link -->
-
-> `ctx.http` 是一个网络请求工具，基于 Axios 封装，具体内容参考接口文档；此处的「检查数据的操作」实际上指 Schema，这将在第三章中讲解
+> `ctx.http` 是一个网络请求工具，基于 Axios 封装，具体内容参考[接口文档](../../api/)；此处你会发现出于不愿意写 `as any` 的原因，对于动态数据的校验往往很繁琐，但这并非最佳实践，第三章中将讲到 Schema，专门用于运行时下检验动态数据（或者说 The-First-Class Type）

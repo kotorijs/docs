@@ -46,9 +46,9 @@ npm install @kotori-bot/kotori-plugin-adapter-qq
 
 通过包管理工具安装的模块一般会安装在 Kotori 根目录下的 `./node_modules/` 内，如若插件包名带有 `@xxx/` 的前缀，表示为包的命名空间，上述示例模块中的「@kotori-bot/」为 Kotori 官方包的命名空间，表示**官方模块**，其余的命名空间或无命名空间的模块为**社区模块**。
 
-所有未安装在 `./modules/` 都应配置 `kotori.yml` 的 `global.dirs` 项以设置额外的加载根目录，但对于 `./node_modules/` 与 `@kotori-bot/` 命名空间已经存在于 `Kotori.yml` 默认配置中，因此无需担心。
+所有未安装在 `./modules/` 都应配置 `kotori.toml` 的 `global.dirs` 项以设置额外的加载根目录，但对于 `./node_modules/` 与 `@kotori-bot/` 命名空间已经存在于 `Kotori.toml` 默认配置中，因此无需担心。
 
-对于其它安装目录或命名空间则需手动添加到 `Kotori.yml` 中，如：
+对于其它安装目录或命名空间则需手动添加到 `Kotori.toml` 中，如：
 
 - 使用包管理工具安装一个命名空间为 `@custom-scope/` 的模块
 - 将模块安装在 Kotori 根目录下的 `./test_modules/` 内
@@ -71,7 +71,7 @@ dirs = [
 
 ### 插件
 
-插件配置数据应写在 `kotori.yml` 的 `plugin.<plugin-name>` 项下，其中 `<plugin-name>` 为插件名字，不应含有包的命名空间与模块前缀，值必须是一个对象。插件的配置项由插件本身提供与指定，并非所有插件本身都会提供配置项。一般地，有提供配置项的插件内都会有一套默认配置，因此不配置也可以正常运行插件。插件的配置和说明可参考该插件的详情页，此处以 「菜单插件」（[@kotori-bot/kotori-plugin-menu](../modules/#@kotori-bot/kotori-plugin-menu)）为例，在详情页查看配置说明后在 `kotori.yml` 中配置相关内容：
+插件配置数据应写在 `kotori.toml` 的 `plugin.<plugin-name>` 项下，其中 `<plugin-name>` 为插件名字，不应含有包的命名空间与模块前缀，值必须是一个对象。插件的配置项由插件本身提供与指定，并非所有插件本身都会提供配置项。一般地，有提供配置项的插件内都会有一套默认配置，因此不配置也可以正常运行插件。插件的配置和说明可参考该插件的详情页，此处以 「菜单插件」（[@kotori-bot/kotori-plugin-menu](../modules/#@kotori-bot/kotori-plugin-menu)）为例，在详情页查看配置说明后在 `kotori.toml` 中配置相关内容：
 
 ```toml
 [plugin.menu]
@@ -82,7 +82,7 @@ content = "菜单 | 小鳥%break%/menu - 查看BOT菜单%break%/hitokoto - 获�
 
 ### 适配器
 
-适配器配置数据应写在 `kotori.yml` 的 `adapter[instanceName]` 项下，其中 `instanceName` 为适配器实例（以下简称「Bot」）名字应由小写英语字母、数字、连字符（\[a-z0-9\]）组成，值必须是一个对象。适配器的配置数据不会作用于适配器模块，Kotori 会根据配置数据创建对应 Bot。对于适配器的配置，必须提供一些必要配置项才能确保实例的正常运行，其中有部分配置项由 Kotori 内部定义，如：
+适配器配置数据应写在 `kotori.toml` 的 `adapter[instanceName]` 项下，其中 `instanceName` 为适配器实例（以下简称「Bot」）名字应由小写英语字母、数字、连字符（\[a-z0-9\]）组成，值必须是一个对象。适配器的配置数据不会作用于适配器模块，Kotori 会根据配置数据创建对应 Bot。对于适配器的配置，必须提供一些必要配置项才能确保实例的正常运行，其中有部分配置项由 Kotori 内部定义，如：
 
 ```toml
 [adapter.cmd-test]

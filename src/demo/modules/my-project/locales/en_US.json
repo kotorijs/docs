@@ -1,1 +1,5 @@
-{}
+{
+  "hello": "Hello, {0}!",
+  "count": "There are {0} apples",
+  "welcome": "Welcome to Kotori"
+}

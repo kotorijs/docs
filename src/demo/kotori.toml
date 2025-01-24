@@ -20,3 +20,10 @@ content = "test menu"
 
 [build]
 banner = "/**\n* @Package %name%\n* @Version %version%\n* @Author %author%\n* @License %license%\n* @Date %date%\n*/"
+
+# region p1
+[plugin.my-project]
+key1 = "value1"
+key2 = 0
+key3 = true
+# endregion p1
