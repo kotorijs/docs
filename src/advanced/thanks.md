@@ -7,7 +7,7 @@ reference to help self improvement and walking farther.
 
 Thanks, referred more and less them at kotori's whole developing process (the ranking is not in order):
 
-- [AkariBot v4](https://github.com/Teahouse-Studios/akari-bot) AGPL-3.0 license
+- [AkariBot v4](https://github.com/Teahouse-Studios/akari-bot) ABCU license
 - [go-cqhttp/for-node](https://github.com/go-cqhttp/for-node)  MIT license
 <!-- - [Koishi.js](https://github.com/koishijs/koishi) MIT license -->
 - [nonebot2](https://github.com/nonebot/nonebot2)  MIT license
@@ -16,4 +16,4 @@ Thanks, referred more and less them at kotori's whole developing process (the ra
 
 ## License
 
-GPL-3.0 license.
+BCU license.
