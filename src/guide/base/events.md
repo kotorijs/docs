@@ -84,9 +84,7 @@ Kotori 中事件类型大致分为三类：
 
 Kotori 中所有事件均定义在 `EventsMapping` 接口上。`custom_event1` 事件触发后将打印事件数据。
 
-<!-- TODO: here api reference link -->
-
-> `ctx.logger` 是一个日志打印工具，`ctx.logger.debug()` 意味着打印内容仅在 `dev` 模式下运行 Kotori 可见，具体内容请参考接口文档
+> `ctx.logger` 是一个日志打印工具，`ctx.logger.debug()` 意味着打印内容仅在 `dev` 模式下运行 Kotori 可见，具体内容请参考 [接口文档](../../api/)
 
 然而，订阅事件后，事件却从来没有发出，因此需要发出事件：
 
