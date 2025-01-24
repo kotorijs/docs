@@ -39,8 +39,8 @@ pnpm dev
 
 Other scripts:
 
+- `serve` Start with production environment
 - `build` Build all packages at the workspace
-- `build:action` Build all packages at the workspace base safe mode.
 - `dev:only` Only start else `nodemon`
 - `pub` Publish all packages at the workspace base `public` access
 - `test` Run all unit tests at the workspace

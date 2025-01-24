@@ -40,3 +40,10 @@ for details.*Italics* indicate that the documentation for this content needs to 
 - [*Server*](https://github.com/kotorijs/kotori/blob/master/packages/loader/src/service/server.ts)
 - [*Database*](https://github.com/kotorijs/kotori/blob/master/packages/loader/src/service/database.ts)
 - [*File*](https://github.com/kotorijs/kotori/blob/master/packages/loader/src/service/file.ts)
+- [*Browser*](https://github.com/kotorijs/kotori/blob/master/modules/browser/src/index.ts)
+
+## ReScript
+
+- [*Kotori*](https://github.com/kotorijs/kotori/blob/master/packages/rescript/src/Kotori.res)
+- [*Kotori Message*](https://github.com/kotorijs/kotori/blob/master/packages/rescript/src/KotoriMsg.res)
+- [*Tsukiko*](https://github.com/kotorijs/kotori/blob/master/packages/rescript/src/Tsu.res)
