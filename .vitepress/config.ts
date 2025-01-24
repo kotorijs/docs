@@ -26,7 +26,7 @@ export default defineConfig({
     socialLinks: [{ icon: 'github', link: 'https://github.com/kotorijs/kotori' }],
     footer: {
       copyright:
-        '<a target="_blank" href="https://github.com/BIYUEHU/ban-chinaman-using/blob/main/LICENSE.md">BCU Licensed</a> | Copyright © 2023 - 2024 Hotaru'
+        '<a target="_blank" href="https://github.com/iceagenb/ban-zhinese-using/blob/main/LICENSE.md">BCU Licensed</a> | Copyright © 2023 - 2024 Hotaru'
     },
     editLink: {
       pattern: 'https://github.com/kotorijs/docs/edit/master/src/:path'
