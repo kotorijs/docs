@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
+    "@kotori-bot/browser": "^1.0.0",
     "@kotori-bot/loader": "^1.8.0",
     "@types/node": "^20.14.2",
     "kotori-bot": "^1.7.1",

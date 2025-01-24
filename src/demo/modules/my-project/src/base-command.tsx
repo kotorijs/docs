@@ -189,15 +189,74 @@ export function main(ctx: Context) {
   // #endregion c15
 
   // #region c16
-  ctx.command('tamaki').action((_, session) => {
-    // session.format('名字：%name%\n身高：%height%cm\n口头禅：%msg%', {
-    //   name: 'Ichinose Himeki',
-    //   height: 153,
-    //   msg: '最喜欢你了，欧尼酱'
-    // })
-    // 等同于：
-    // <format template="名字：{0}\n身高：{1}cm\n口头禅：{2}"></fotmat>
-    // 最终输出：名字：Ichinose Himeki\n年龄：153\n口头禅：最喜欢你了，欧尼酱
+  ctx.command('tamaki').action(() => {
+    ;<format template="名字：{0}\n身高：{1}cm\n口头禅：{2}">
+      <text>Tamaki Sakura</text>
+      <text>160</text>
+      <text>兔巴尼！</text>
+    </format>
   })
   // #endregion c16
+
+  // #region c18
+  ctx.command('question').action(async (_, session) => {
+    await session.quick('这里有一个问题想问你...')
+    const likeme = await session.confirm({
+      message: '你喜欢我吗?',
+      sure: '喜欢'
+    })
+    if (!likeme) return '伤透了我的心'
+    const ago = Number(await session.prompt('喜欢我多久了?'))
+    if (Number.isNaN(ago) || ago < 0) return '这可不是一个有效的Number啊！'
+    await session.quick(ago >= 0 && ago <= 1 ? '什么嘛...原来才刚刚开始喜欢啊' : `居然喜欢了 ${ago} 这么久啊！`)
+    return '谢谢你的喜欢哦~'
+  })
+  // #endregion c18
+
+  // #region c19
+  ctx.command('hitokoto').action(async (_, session) => {
+    const res = await ctx.http.get('https://api.hotaru.icu/api/hitokoto/v2/')
+
+    if (
+      !res ||
+      typeof res !== 'object' ||
+      !('data' in res) ||
+      !res.data ||
+      typeof res.data !== 'object' ||
+      !('hitokoto' in res.data) ||
+      !res.data.hitokoto ||
+      typeof res.data.hitokoto !== 'string' ||
+      !('from' in res.data) ||
+      !res.data.from ||
+      typeof res.data.from !== 'string'
+    ) {
+      throw session.error('res_error', { error: new Error('res.data 格式错误') })
+    }
+
+    return (
+      <format template="今日一言: {0}{1}">
+        <text>{res.data.hitokoto}</text>
+        <seg>{res.data.from ? `——${res.data.from}` : ''}</seg>
+      </format>
+    )
+  })
+  // #endregion c19
 }
+
+// #region c17
+// 告诉 Kotori 自动加载国际化文件
+export const lang = [__dirname, '../locales']
+
+export default function (ctx: Context) {
+  ctx.command('himeki').action((_, session) => {
+    // 使用 session.send()：
+    const hitokoto = session.i18n.locale('test.msg.himeki.hitokoto')
+    const msg = session.format(session.i18n.locale('test.msg.himeki'), ['Ichinose Himeki', 153, hitokoto])
+    session.send(msg)
+    // 使用 session.quick()：
+    session.quick(['test.msg.himeki', ['Ichinose Himeki', 153, 'test.msg.himeki.hitokoto']])
+    // 直接返回：
+    return ['test.msg.himeki', ['Ichinose Himeki', 153, 'test.msg.himeki.hitokoto']]
+  })
+}
+// #endregion c17

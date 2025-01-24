@@ -16,12 +16,7 @@
 > [!WARNING]
 > 如无特殊需求建议请勿更改优先级，否则可能会导致一些意料之外的问题。
 
-```typescript
-ctx.midware((next, session) => {
-  // 中间件逻辑...
-  next(); // 通过此中间件
-}, 80); // 优先级为 80
-```
+<<< @/demo/modules/my-project/src/base-middleware.tsx#m1
 
 中间件回调函数接收两个参数:
 
@@ -34,45 +29,19 @@ ctx.midware((next, session) => {
 
 `ctx.midware()` 方法的返回值是一个可以用于移除该中间件的函数。
 
-```typescript
-const dispose = ctx.midware((next) => {
-  // ...
-  next();
-});
-
-// 移除中间件
-dispose();
-```
+<<< @/demo/modules/my-project/src/base-middleware.tsx#m2
 
 ## 使用示例
 
 ### 基本使用
 
-```typescript
-ctx.midware((next, session) => {
-  console.log('收到一条消息');
-  next();
-});
-
-ctx.midware((next, session) => {
-  console.log('这是另一个中间件');
-  session.quick('这条消息将被发送');
-  next();
-});
-```
+<<< @/demo/modules/my-project/src/base-middleware.tsx#m3
 
 上述代码注册了两个中间件，每当收到一条消息时，它们都会被执行。第一个中间件只打印日志，第二个则先打印日志，然后发送一条消息。由于两个中间件都调用了 `next()` 函数，因此该消息事件会继续被处理。
 
 ### 过滤消息
 
-```typescript
-ctx.midware((next, session) => {
-  if (session.message !== 'hello') return;
-  next();
-});
-
-ctx.command('hello').action(() => 'Hello World!');
-```
+<<< @/demo/modules/my-project/src/base-middleware.tsx#m4
 
 这个示例中的中间件会过滤掉消息内容不是「hello」的消息事件。只有当消息是「hello」时，中间件才会调用 `next()`让该消息事件继续被处理。通过使用中间件，我们可以在消息流经 Kotori 的各个环节进行拦截和处理，实现更加灵活和可控的消息处理逻辑。
 
@@ -83,44 +52,7 @@ ctx.command('hello').action(() => 'Hello World!');
 
 有时我们需要限制某些命令的使用频率，以防止被滥用。这时可以使用中间件来实现这一功能。
 
-```typescript
-// 用于存储命令使用记录
-const cmdUsageRecord = new Map();
-
-ctx.midware((next, session) => {
-  // 检查是否为命令消息
-  if (!session.message.startsWith('/')) {
-    next(); // 非命令消息，直接通过
-    return;
-  }
-
-  const cmd = session.message.slice(1); // 获取命令名
-  const userId = session.userId; // 获取发送者ID
-
-  // 如果此命令无使用记录，则新建一个记录
-  if (!cmdUsageRecord.has(cmd)) {
-    cmdUsageRecord.set(cmd, new Map());
-  }
-  const userRecord = cmdUsageRecord.get(cmd);
-
-  // 获取该用户对此命令的最后使用时间
-  const lastUsedAt = userRecord.get(userId) || 0;
-
-  // 计算距离最后一次使用的时间间隔(单位:秒)
-  constInterval = (Date.now() - lastUsedAt) / 1000;
-
-  // 如果间隔小于10秒，则拒绝执行该命令
-  if (Interval < 10) {
-    session.quick('命令使用过于频繁，请稍后再试');
-    return;
-  }
-
-  // 更新该用户对此命令的最后使用时间
-  userRecord.set(userId, Date.now());
-
-  next(); // 通过中间件
-}, 10); // 设置较高优先级
-```
+<<< @/demo/modules/my-project/src/base-middleware.tsx#m5
 
 上述代码定义了一个中间件，用于限制命令的使用频率。具体逻辑如下:
 

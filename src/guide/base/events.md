@@ -58,7 +58,7 @@ Kotori 中事件类型大致分为三类：
 
 <<< @/demo/modules/my-project/src/base-events.tsx#e6
 
-由于 `status` 是由适配器发出的系统事件，它并没有类似于会话事件中的 `session.send()`，因此只能使用最原始的办法发送消息。`status` 的事件数据中仅有两个值，一个是 `data.status` 表示当前在线状态（「online」或「offline」），`data.adapter` 为目标 Bot，Bot 上有 `adapter.api` 与 `adapter.config`，前者等价于会话事件中的 `session.api`，后者为 Bot 配置，来自于 `kotori.yml`。
+由于 `status` 是由适配器发出的系统事件，它并没有类似于会话事件中的 `session.send()`，因此只能使用最原始的办法发送消息。`status` 的事件数据中仅有两个值，一个是 `data.status` 表示当前在线状态（「online」或「offline」），`data.adapter` 为目标 Bot，Bot 上有 `adapter.api` 与 `adapter.config`，前者等价于会话事件中的 `session.api`，后者为 Bot 配置，来自于 `kotori.toml`。
 
 ### 会话事件
 

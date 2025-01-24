@@ -9,13 +9,22 @@
 
 Kotori 从 v1.7 开始支持用 ReScript 编写插件，尽管这并非强制性，但如若你对函数式编程感兴趣或者对安全性有要求，那么使用 ReScript 编写 Kotori 插件将是不二之举。
 
-```res
-let main = (ctx: Kotori.context) => {
-   open Kotori.Utils;
+ReScript 模块的 `package.json` 会有所不同：
 
-   "echo <message> - print string"->ctx.cmd.new->ctx.cmd.action(async ({args: [msg]}, session) => {
-	   msg->session.quick
-	   ""
-   })->ignore
-}
-```
+<<< @/demo/modules/my-project-res/package.json
+
+此外，模块根目录（并非工作区）的 `rescript.json` 也是必要的：
+
+<<< @/demo/modules/my-project-res/rescript.json
+
+## 基本示例
+
+<<< @/demo/modules/my-project-res/src/Main.res
+
+> [!TIP]
+> ReScript 与 React 均由 Facebook 开发，因此它天然支持 JSX 语法。
+
+---
+
+> [!NOTE]
+> Kotori 提供的 ReScript 相关 API 请参考 [接口文档](../../api/)。

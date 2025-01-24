@@ -30,7 +30,7 @@ pnpm build
 
 用于指定在发布构建产物时忽略的文件与文件夹，在模块根目录创建一个 `.npmignore` 文件：
 
-```int
+```text
 node_modules
 src
 test
