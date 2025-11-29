@@ -1,7 +1,7 @@
 <script setup lang="ts">
 function click() {
-  const voice = new Audio('/assets/kotori.mp3');
-  voice.play();
+  const voice = new Audio('/assets/kotori.mp3')
+  voice.play()
 }
 </script>
 
