@@ -40,4 +40,4 @@ database by console interaction.
 
 ## License
 
-BCU license.
+GPL-3.0-or-later license.

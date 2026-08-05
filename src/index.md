@@ -6,7 +6,7 @@ hero:
     src: /favicon.svg
     alt: KotoriBot
   name: "小鳥 · KotoriBot"
-  tagline: 基于 Node.js + TypeScript 的跨平台聊天机器人框架
+  tagline: 新一代 LLM 驱动的跨平台聊天机器人框架 · Bun + TypeScript
   actions:
     - theme: brand
       text: 开始使用👉
@@ -25,6 +25,9 @@ features:
   - icon: 🛠️
     title: 现代化
     details: 使用现代化的 ECMAScript 语法规范与强大的 TypeScript 类型支持
+  - icon: 🤖
+    title: LLM 驱动
+    details: 提供面向 LLM 的开发指南，可借助 AI 快速生成插件代码，轻松构建智能聊天机器人
 
 images:
   - src: https://pic.imgdb.cn/item/6739964ad29ded1a8c704df2.png

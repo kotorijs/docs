@@ -25,8 +25,7 @@ export default defineConfig({
     sidebar: sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/kotorijs/kotori' }],
     footer: {
-      copyright:
-        '<a target="_blank" href="https://github.com/iceagenb/ban-zhinese-using/blob/main/LICENSE.md">BCU Licensed</a> | Copyright © 2023 - 2025 Hotaru'
+      copyright: 'GPL-3.0 | Copyright © 2023 - 2026 Arimura Sena'
     },
     editLink: {
       pattern: 'https://github.com/kotorijs/docs/edit/master/src/:path'
