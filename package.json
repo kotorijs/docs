@@ -10,7 +10,8 @@
     "build:only": "vitepress build",
     "build": "pnpm pick && vitepress build",
     "preview": "vitepress preview",
-    "pick": "pnpx tsx scripts/pick"
+    "pick": "pnpx tsx scripts/pick",
+    "ro": "bun agent/bin"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",

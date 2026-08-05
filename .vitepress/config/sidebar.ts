@@ -18,6 +18,9 @@ export default {
       items: [{ text: '前言', link: '/guide/' }]
     },
     {
+      items: [{ text: 'LLMs 支持', link: '/guide/llms' }]
+    },
+    {
       text: '准备流程',
       items: [
         { text: '环境搭建', link: '/guide/start/environment' },
