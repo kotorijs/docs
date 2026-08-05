@@ -23,7 +23,7 @@ interface ModulePackage {
   version: string;
   description: string;
   main: string;
-  license: 'BAN-ZHINESE-LICENSE' | 'BCU';
+  license: 'GPL-3.0' | 'GPL-3.0-or-later' | 'GPL-3.0-only';
   keywords: string[];
   author: string | string[];
   peerDependencies: Record<string, string>;
@@ -39,7 +39,7 @@ interface ModulePackage {
 但仅以 TypeScript 形式展现并不够全面，因为除此之外 Kotori 对合法的 package.json 有以下特殊要求：
 
 - `name` 必须满足 `/kotori-plugin-[a-z]([a-z,0-9]{2,13})\b/`，即以「kotori-plugin-」加一个小写字母开头，后接 2 ~ 13 个 小写字母与数字的组合
-- `license` 必须为 `'BAN-ZHINESE-LICENSE' | 'BCU'`，因为 Kotori 本身即使用的即是 BCU 协议
+- `license` 必须为 `'GPL-3.0' | 'GPL-3.0-or-later' | 'GPL-3.0-only'` Kotori 本身即使用的即是 GPL-3.0 协议
 - `keywords` 中必须含有 `'kotori'`、`'chatbot'`、`'kotori-plugin'` 三个值，主要是为了 npm 包统计考虑
 - `peerDependencies` 中必须含有名为 `'kotori-bot'` 的键，具体作用请参考 [Peer Dependencies](https://nodejs.org/en/blog/npm/peer-dependencies)
 

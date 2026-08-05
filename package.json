@@ -4,13 +4,13 @@
   "type": "module",
   "description": "Kotori docs",
   "author": "Hotaru",
-  "license": "BCU",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "dev": "vitepress dev",
     "build:only": "vitepress build",
-    "build": "pnpm pick && vitepress build",
+    "build": "bun pick && vitepress build",
     "preview": "vitepress preview",
-    "pick": "pnpx tsx scripts/pick",
+    "pick": "bun scripts/pick",
     "ro": "bun agent/bin"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@
   "description": "kotori plugin workspace project",
   "version": "1.0.0",
   "private": true,
-  "license": "BAN-ZHINESE-USING",
+  "license": "GPL-3.0-or-later",
   "author": "Himeno",
   "scripts": {
     "serve": "kotori",
