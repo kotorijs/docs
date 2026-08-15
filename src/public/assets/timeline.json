@@ -1,5 +1,5 @@
 {
-  "latest": "2025/1/21 17:52:41",
+  "latest": "2026/8/15 15:18:26",
   "data": {
     "2025/1/21 17:16:37": {
       "@kotori-bot/kotori-plugin-core": {
@@ -218,6 +218,87 @@
         "type": "update",
         "version": "1.0.3",
         "oldVersion": "1.0.2"
+      }
+    },
+    "2026/8/15 15:18:26": {
+      "kotori-plugin-penis": {
+        "type": "update",
+        "version": "1.5.2",
+        "oldVersion": "1.2.3"
+      },
+      "kotori-plugin-github": {
+        "type": "update",
+        "version": "1.3.1",
+        "oldVersion": "1.3.0"
+      },
+      "kotori-plugin-adapter-minecraft": {
+        "type": "update",
+        "version": "2.0.2",
+        "oldVersion": "2.0.1"
+      },
+      "kotori-plugin-hitokotos": {
+        "type": "update",
+        "version": "1.2.2",
+        "oldVersion": "1.2.1"
+      },
+      "kotori-plugin-testing": {
+        "type": "update",
+        "version": "1.3.4",
+        "oldVersion": "1.3.2"
+      },
+      "kotori-plugin-requester": {
+        "type": "update",
+        "version": "1.1.3",
+        "oldVersion": "1.1.2"
+      },
+      "kotori-plugin-better-join": {
+        "type": "update",
+        "version": "1.2.3",
+        "oldVersion": "1.2.2"
+      },
+      "kotori-plugin-randomimg": {
+        "type": "update",
+        "version": "1.2.8",
+        "oldVersion": "1.2.4"
+      },
+      "kotori-plugin-minecraft": {
+        "type": "update",
+        "version": "1.0.4",
+        "oldVersion": "1.0.2"
+      },
+      "kotori-plugin-music": {
+        "type": "update",
+        "version": "1.4.1",
+        "oldVersion": "1.2.4"
+      },
+      "@kotori-bot/kotori-plugin-webui": {
+        "type": "update",
+        "version": "1.5.3",
+        "oldVersion": "1.4.2"
+      },
+      "@kotori-bot/kotori-plugin-core": {
+        "type": "update",
+        "version": "1.5.2",
+        "oldVersion": "1.4.5"
+      },
+      "@kotori-bot/kotori-plugin-adapter-sandbox": {
+        "type": "update",
+        "version": "1.1.1",
+        "oldVersion": "1.1.0"
+      },
+      "kotori-plugin-grouper": {
+        "type": "update",
+        "version": "1.3.1",
+        "oldVersion": "1.3.0"
+      },
+      "@kotori-bot/kotori-plugin-adapter-onebot": {
+        "type": "update",
+        "version": "2.1.2",
+        "oldVersion": "2.1.1"
+      },
+      "@kotori-bot/makichan": {
+        "type": "add",
+        "version": "1.1.1"
       }
     }
   }

@@ -1,0 +1,28 @@
+{
+  "name": "@kotori-bot/docs",
+  "version": "1.1.0",
+  "type": "module",
+  "description": "Kotori docs",
+  "author": "Hotaru",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build:only": "vitepress build",
+    "build": "bun pick && vitepress build",
+    "preview": "vitepress preview",
+    "pick": "bun scripts/pick",
+    "ro": "bun agent/bin"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@kotori-bot/browser": "^1.0.0",
+    "@kotori-bot/loader": "^1.8.0",
+    "@types/node": "^20.14.2",
+    "kotori-bot": "^1.7.1",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "shiki": "^1.23.0",
+    "vitepress": "latest",
+    "vue": "^3.4.18"
+  }
+}
